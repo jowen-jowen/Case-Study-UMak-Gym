@@ -3,4 +3,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="radio_button_color"> #6c83a3</color>
+    <color name="btn">#052865</color>
 </resources>

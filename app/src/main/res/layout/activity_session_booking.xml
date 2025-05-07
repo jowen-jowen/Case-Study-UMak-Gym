@@ -5,6 +5,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5D328">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btnSelectDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Booking Date" />
+
+                <TextView
+                    android:id="@+id/tvSelectedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No date selected" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="160dp"
@@ -54,6 +79,7 @@
             android:layout_marginEnd="137dp"
             android:layout_marginBottom="16dp"
             android:background="#052865"
+            android:backgroundTint="#052865"
             android:fontFamily="@font/roboto"
             android:paddingStart="30dp"
             android:paddingTop="20dp"

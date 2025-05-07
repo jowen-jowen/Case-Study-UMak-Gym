@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background_gradient">
+    android:background="#052865"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView13"
@@ -46,9 +46,10 @@
         android:layout_marginRight="70sp"
         android:layout_marginBottom="248dp"
         android:background="@drawable/rounded_border_trans"
+        android:backgroundTint="#052865"
         android:fontFamily="@font/roboto"
         android:paddingStart="5dp"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
         android:text="@string/button_start"
