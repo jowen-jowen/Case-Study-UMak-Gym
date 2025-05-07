@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "62105159021",
+    "project_id": "login-register-93b9e",
+    "storage_bucket": "login-register-93b9e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:62105159021:android:ae8b2ee2505de971c28664",
+        "android_client_info": {
+          "package_name": "com.example.umakgymreserve"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2VCPpkqDHHxgfb2zYIeM3bOx4Qb83Tug"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
