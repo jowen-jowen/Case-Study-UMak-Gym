@@ -29,10 +29,17 @@ public class SessionBookingActivity extends AppCompatActivity {
         datePicker.setMinDate(now.getTimeInMillis());
 
         Button btnBack = findViewById(R.id.btnBackToMain);
+        Button btnProceed = findViewById(R.id.btnProceed);
 
         btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+            startActivity(intent);
+            finish();
+        });
+
+        btnProceed.setOnClickListener(v -> {
             int day = datePicker.getDayOfMonth();
-            int month = datePicker.getMonth(); // 0-indexed
+            int month = datePicker.getMonth();
             int year = datePicker.getYear();
             int hour = timePicker.getHour();
             int minute = timePicker.getMinute();
@@ -50,14 +57,12 @@ public class SessionBookingActivity extends AppCompatActivity {
                 return;
             }
 
-            // Convert to 12-hour format
             String amPm = (hour >= 12) ? "PM" : "AM";
             int hour12 = (hour % 12 == 0) ? 12 : hour % 12;
 
             String selectedDateTime = String.format(
                     "You selected:\n%02d/%02d/%04d at %02d:%02d %s", month + 1, day, year, hour12, minute, amPm
             );
-
 
             new AlertDialog.Builder(this)
                     .setTitle("Session Booked")
@@ -68,6 +73,7 @@ public class SessionBookingActivity extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                     })
+                    .setNegativeButton("Cancel", null)
                     .show();
         });
     }
