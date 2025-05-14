@@ -41,8 +41,7 @@ public class Payment extends AppCompatActivity {
     }
 
     private void createPaymentLink() {
-        // ⚠️ Replace with your actual local IP address and PHP filename
-        String phpUrl = "http://192.168.15.24/LogReg/payment.php";
+        String phpUrl = "http://10.0.2.2/LogReg/payment.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
