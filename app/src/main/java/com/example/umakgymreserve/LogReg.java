@@ -29,7 +29,7 @@ public class LogReg extends AppCompatActivity {
 
     EditText user,pass;
 
-    String URL = "http://10.0.2.2/LogReg/login.php";
+    String URL = "http://192.168.15.24/LogReg/login.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

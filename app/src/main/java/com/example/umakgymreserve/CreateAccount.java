@@ -29,7 +29,7 @@ import java.util.Map;
 public class CreateAccount extends AppCompatActivity {
     Button confirmAcc;
     EditText createUser, createPass;
-    String URL = "http://10.0.2.2/LogReg/register.php";
+    String URL = "http://192.168.15.24/LogReg/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

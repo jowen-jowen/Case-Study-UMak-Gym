@@ -12,7 +12,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workouts);
 
-        Button btnBack = findViewById(R.id.btnBackToMain);
+        Button btnBack = findViewById(R.id.btnBackHomePayment);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(WorkoutsActivity.this, ReservationPage.class);
             startActivity(intent);

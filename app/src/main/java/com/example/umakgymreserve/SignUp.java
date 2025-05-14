@@ -43,7 +43,7 @@ public class SignUp extends AppCompatActivity {
         alum = findViewById(R.id.rdAlumni);
         price = findViewById(R.id.tvPrice);
         email = findViewById(R.id.etUmakEmail);
-        confirm = findViewById(R.id.btnConfirm);
+        confirm = findViewById(R.id.btnBackHomePayment);
 
         stud.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         emp.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));

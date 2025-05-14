@@ -12,7 +12,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcement);
 
-        Button btnBack = findViewById(R.id.btnBackToMain);
+        Button btnBack = findViewById(R.id.btnBackHomePayment);
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
