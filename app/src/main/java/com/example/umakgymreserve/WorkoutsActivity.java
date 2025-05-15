@@ -12,7 +12,7 @@ import com.example.umakgymreserve.ChestActivity;
 import com.example.umakgymreserve.LegsActivity;
 import com.example.umakgymreserve.MainActivity;
 
-public class WorkoutActivity extends AppCompatActivity {
+public class WorkoutsActivity extends AppCompatActivity {
 
     Button btnChest, btnBiceps, btnLegs, btnBack, btnBackToMain;
 
@@ -21,36 +21,36 @@ public class WorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workouts);
 
-        // Connect buttons with their IDs
+
         btnChest = findViewById(R.id.btnchest);
         btnBiceps = findViewById(R.id.btnbiceps);
         btnLegs = findViewById(R.id.btnlegs);
         btnBack = findViewById(R.id.btnback);
         btnBackToMain = findViewById(R.id.btnBackToMain);
 
-        // Example functionality for each button
+
         btnChest.setOnClickListener(view -> {
-            Intent intent = new Intent(WorkoutActivity.this, ChestActivity.class);
+            Intent intent = new Intent(WorkoutsActivity.this, ChestActivity.class);
             startActivity(intent);
         });
 
         btnBiceps.setOnClickListener(view -> {
-            Intent intent = new Intent(WorkoutActivity.this, BicepsActivity.class);
+            Intent intent = new Intent(WorkoutsActivity.this, BicepsActivity.class);
             startActivity(intent);
         });
 
         btnLegs.setOnClickListener(view -> {
-            Intent intent = new Intent(WorkoutActivity.this, LegsActivity.class);
+            Intent intent = new Intent(WorkoutsActivity.this, LegsActivity.class);
             startActivity(intent);
         });
 
         btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(WorkoutActivity.this, BackActivity.class);
+            Intent intent = new Intent(WorkoutsActivity.this, BackActivity.class);
             startActivity(intent);
         });
 
         btnBackToMain.setOnClickListener(view -> {
-            Intent intent = new Intent(WorkoutActivity.this, MainActivity.class);
+            Intent intent = new Intent(WorkoutsActivity.this, MainActivity.class);
             startActivity(intent);
         });
     }

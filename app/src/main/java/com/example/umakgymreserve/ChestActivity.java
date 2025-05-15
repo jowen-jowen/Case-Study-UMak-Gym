@@ -7,6 +7,6 @@ public class ChestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chest); // You’ll create this layout next
+        setContentView(R.layout.activity_chest);
     }
 }
