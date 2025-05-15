@@ -57,6 +57,14 @@ public class LogReg extends AppCompatActivity {
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
 
+            if (username.isEmpty()) {
+                user.setError("USERNAME IS EMPTY!");
+            }
+
+            if (password.isEmpty()) {
+                pass.setError("PASSWORD IS EMPTY!");
+            }
+
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                     response -> {
                         try {

@@ -91,7 +91,6 @@ public class SignUp extends AppCompatActivity {
             RadioButton selectedRdButton = findViewById(selectedId);
             String typeRegister = selectedRdButton.getText().toString();
 
-
             if (firstName.matches(firstNameValidator)) {
                 if (lastName.matches(lastNameValidator)) {
                     if (umakEmail.matches(umakEmailValidator)) {

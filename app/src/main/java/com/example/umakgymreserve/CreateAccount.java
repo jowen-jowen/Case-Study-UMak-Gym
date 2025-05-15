@@ -60,6 +60,14 @@ public class CreateAccount extends AppCompatActivity {
             String receivedFirstName = fetchSignUp.getStringExtra("firstName");
             String receivedLastName = fetchSignUp.getStringExtra("lastName");
 
+            if (username.isEmpty()) {
+                createUser.setError("USERNAME IS EMPTY!");
+            }
+
+            if (password.isEmpty()) {
+                createPass.setError("PASSWORD IS EMPTY!");
+            }
+
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                     response -> {
                         try {
