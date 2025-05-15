@@ -48,8 +48,8 @@ public class LogReg extends AppCompatActivity {
         user = findViewById(R.id.etUsername);
         pass = findViewById(R.id.etPassword);
 
-        login.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
-        signUp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        login.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+        signUp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         login.setBackgroundResource(R.drawable.rounded_border_trans);
         signUp.setBackgroundResource(R.drawable.rounded_border_trans);
 
