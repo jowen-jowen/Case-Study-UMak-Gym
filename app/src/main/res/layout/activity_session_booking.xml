@@ -83,7 +83,7 @@
             android:id="@+id/datePicker"
             android:layout_width="327dp"
             android:layout_height="166dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="40dp"
             android:background="@color/white"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
@@ -95,11 +95,11 @@
             android:id="@+id/timePicker"
             android:layout_width="329dp"
             android:layout_height="119dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="36dp"
             android:background="@color/white"
             android:timePickerMode="spinner"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintHorizontal_bias="0.487"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/datePicker" />
 

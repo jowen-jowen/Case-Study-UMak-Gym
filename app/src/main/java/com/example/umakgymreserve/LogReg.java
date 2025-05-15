@@ -62,10 +62,13 @@ public class LogReg extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             String status = obj.getString("status");
-
                             if (status.equals("success")) {
+                                String firstName = obj.getString("firstName");
+                                String type = obj.getString("typeRegister");
                                 Intent intent = new Intent(LogReg.this, ReservationPage.class);
                                 intent.putExtra("username", username); // Optional
+                                intent.putExtra("firstName", firstName);
+                                intent.putExtra("type", type);
                                 startActivity(intent);
                                 finish();
                             } else {
