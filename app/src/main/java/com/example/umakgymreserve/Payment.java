@@ -1,11 +1,14 @@
 package com.example.umakgymreserve;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +26,7 @@ public class Payment extends AppCompatActivity {
     private WebView browser;
     private Button btnStartPayment, btnBackHome;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,22 +43,45 @@ public class Payment extends AppCompatActivity {
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, ReservationPage.class);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
-
-
-
-
     }
 
     private void initializeWebView() {
         browser.getSettings().setJavaScriptEnabled(true);
-        browser.setWebViewClient(new WebViewClient());
+        browser.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Log.d("Payment", "URL Loading: " + url);
+
+                if (url.startsWith("paymongo://success")) {
+                    Log.d("Payment", "Detected success URL");
+
+                    Uri uri = Uri.parse(url);
+                    String email = uri.getQueryParameter("email");
+                    String contact = uri.getQueryParameter("contact");
+                    String reference = uri.getQueryParameter("reference");
+                    String name = uri.getQueryParameter("name");
+
+                    // Go to PaymentSuccess activity
+                    Intent intent = new Intent(Payment.this, PaymentSuccess.class);
+                    intent.putExtra("email", email);
+                    intent.putExtra("contact", contact);
+                    intent.putExtra("reference", reference);
+                    intent.putExtra("name", name);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
     }
 
     private void createPaymentLink() {
-        // ⚠️ Replace with your actual local IP address and PHP filename
-        String phpUrl = "http://10.0.2.2/LogReg/payment.php";
+        String phpUrl = "http://10.0.2.2/LogReg/payment.php"; // Replace with your actual PHP URL
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -66,7 +93,6 @@ public class Payment extends AppCompatActivity {
                         JSONObject attributes = data.getJSONObject("attributes");
                         String checkoutUrl = attributes.getString("checkout_url");
 
-                        // Show WebView and load the checkout link
                         browser.setVisibility(View.VISIBLE);
                         btnStartPayment.setVisibility(View.GONE);
                         browser.loadUrl(checkoutUrl);

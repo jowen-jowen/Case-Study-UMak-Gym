@@ -44,8 +44,8 @@ public class OtpVerif extends AppCompatActivity {
         typeOtp = findViewById(R.id.etTypeOtp);
         umakEmailDisplay = findViewById(R.id.tvUmakEmail);
 
-        sendOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
-        confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        sendOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+        confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         sendOtp.setBackgroundResource(R.drawable.rounded_border_trans);
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
 

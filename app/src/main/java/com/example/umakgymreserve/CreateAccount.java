@@ -29,7 +29,7 @@ import java.util.Map;
 public class CreateAccount extends AppCompatActivity {
     Button confirmAcc;
     EditText createUser, createPass;
-    String URL = "http://192.168.15.24/LogReg/register.php";
+    String URL = "http://10.0.2.2/LogReg/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class CreateAccount extends AppCompatActivity {
         createUser = findViewById(R.id.etCreateUsername);
         createPass = findViewById(R.id.etCreatePassword);
 
-        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         confirmAcc.setBackgroundResource(R.drawable.rounded_border_trans);
         accountCreateConfirmation();
     }

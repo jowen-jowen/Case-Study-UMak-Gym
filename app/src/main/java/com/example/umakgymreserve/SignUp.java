@@ -48,7 +48,7 @@ public class SignUp extends AppCompatActivity {
         stud.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         emp.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         alum.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
-        confirm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        confirm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         confirm.setBackgroundResource(R.drawable.rounded_border_trans);
 
         setPrice();
