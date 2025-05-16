@@ -15,8 +15,10 @@ public class WorkoutsActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBackHomePayment);
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(WorkoutsActivity.this, ReservationPage.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            intent.putExtra("firstName", firstNameExport);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
 
     }

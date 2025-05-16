@@ -5,6 +5,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#F5D328">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+                <Button
+                    android:id="@+id/btnSelectDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Booking Date" />
+
+                <TextView
+                    android:id="@+id/tvSelectedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No date selected" />
+        </LinearLayout>
+
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="160dp"
@@ -55,6 +80,7 @@
             android:layout_marginEnd="137dp"
             android:layout_marginBottom="16dp"
             android:background="#052865"
+            android:backgroundTint="#052865"
             android:fontFamily="@font/roboto"
             android:paddingStart="30dp"
             android:paddingTop="20dp"
@@ -65,65 +91,6 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/btnProceed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="16dp"
-            android:layout_marginStart="137dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="16dp"
-            android:background="#052865"
-            android:fontFamily="@font/roboto"
-            android:paddingStart="30dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="30dp"
-            android:paddingBottom="20dp"
-            android:text="Proceed"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Select Date And Time:"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="235dp" />
-
-        <DatePicker
-            android:id="@+id/datePicker"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@color/white"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView14" />
-
-        <TimePicker
-            android:id="@+id/timePicker"
-            android:layout_width="350dp"
-            android:layout_height="157dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/white"
-            android:timePickerMode="spinner"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/datePicker" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
