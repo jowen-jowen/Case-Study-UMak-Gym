@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -20,7 +21,7 @@ import org.json.JSONObject;
 public class Payment extends AppCompatActivity {
 
     private WebView browser;
-    private Button btnStartPayment;
+    private Button btnStartPayment, btnBackHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,21 @@ public class Payment extends AppCompatActivity {
 
         browser = findViewById(R.id.webView);
         btnStartPayment = findViewById(R.id.btnStartPayment);
+        btnBackHome = findViewById(R.id.btnBackHome);
 
         initializeWebView();
 
         btnStartPayment.setOnClickListener(v -> createPaymentLink());
+
+        btnBackHome.setOnClickListener(v -> {
+            Intent intent = new Intent(Payment.this, ReservationPage.class);
+            startActivity(intent);
+            finish(); // optional: finishes current activity so it doesn't stay in back stack
+        });
+
+
+
+
     }
 
     private void initializeWebView() {
@@ -42,7 +54,7 @@ public class Payment extends AppCompatActivity {
 
     private void createPaymentLink() {
         // ⚠️ Replace with your actual local IP address and PHP filename
-        String phpUrl = "http://192.168.15.24/LogReg/payment.php";
+        String phpUrl = "http://10.0.2.2/LogReg/payment.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -56,6 +68,7 @@ public class Payment extends AppCompatActivity {
 
                         // Show WebView and load the checkout link
                         browser.setVisibility(View.VISIBLE);
+                        btnStartPayment.setVisibility(View.GONE);
                         browser.loadUrl(checkoutUrl);
 
                     } catch (JSONException e) {

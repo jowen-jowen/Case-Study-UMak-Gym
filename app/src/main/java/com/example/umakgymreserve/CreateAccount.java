@@ -45,7 +45,7 @@ public class CreateAccount extends AppCompatActivity {
         createUser = findViewById(R.id.etCreateUsername);
         createPass = findViewById(R.id.etCreatePassword);
 
-        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         confirmAcc.setBackgroundResource(R.drawable.rounded_border_trans);
         accountCreateConfirmation();
     }
