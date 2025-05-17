@@ -23,7 +23,7 @@ public class LegsActivity extends AppCompatActivity {
         listViewLegs = findViewById(R.id.listViewLegs);
         descriptionTextView = findViewById(R.id.descriptionTextView);
 
-        // Initialize and populate the HashMap with leg exercise descriptions
+
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Barbell Squats (High Bar & Low Bar)",
                 "The king of leg exercises. High bar emphasizes quads, low bar works more posterior chain.");

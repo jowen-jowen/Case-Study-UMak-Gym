@@ -23,7 +23,7 @@ public class ChestActivity extends AppCompatActivity {
         listViewChest = findViewById(R.id.listViewChest);
         descriptionTextView = findViewById(R.id.descriptionTextView);
 
-        // Initialize and populate the HashMap with chest exercise descriptions
+
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Push-Ups",
                 "Fundamental bodyweight exercise. Keep core tight and lower with control. Variations: wide/narrow grip.");

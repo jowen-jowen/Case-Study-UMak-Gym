@@ -23,7 +23,7 @@ public class BicepsActivity extends AppCompatActivity {
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
 
-        // Initialize and populate the HashMap with biceps exercise descriptions
+
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Barbell Bicep Curls",
                 "Classic bicep builder. Keep elbows pinned to sides, curl weight up while squeezing biceps. Avoid swinging.");

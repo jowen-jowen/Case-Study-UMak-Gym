@@ -21,9 +21,9 @@ public class BackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_back);
 
         listViewBack = findViewById(R.id.listViewBack);
-        descriptionTextView = findViewById(R.id.descriptionTextView); // Make sure you have this TextView in your layout
+        descriptionTextView = findViewById(R.id.descriptionTextView);
 
-        // Initialize and populate the HashMap with exercise descriptions
+
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Pull-Ups (Various Grips)", "Pull-Ups target your lats, traps, and biceps. Use different grips to emphasize different muscles.");
         exerciseDescriptions.put("Barbell Rows (Bent-Over Rows)", "Strengthens the middle back and posterior chain. Keep your back straight at about 45 degrees.");
