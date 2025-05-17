@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -18,7 +19,7 @@ import java.util.*;
 public class SessionBookingActivity extends AppCompatActivity {
     private GridLayout calendarGrid;
     private TextView tvSelectedDate;
-    private Button btnSelectDate, btnClearSelection;
+    private Button btnSelectDate, btnClearSelection, btnBack;
     private final List<Calendar> selectedDates = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
     private final Map<TextView, Calendar> dateViewsMap = new HashMap<>();
@@ -58,7 +59,16 @@ public class SessionBookingActivity extends AppCompatActivity {
             selectedDates.clear();
             tvSelectedDate.setText("No date selected");
         });
+
+        btnBack = findViewById(R.id.btnBackToMain);
+
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+            startActivity(intent);
+            finish(); // optional: finishes current activity so it doesn't stay in back stack
+        });
     }
+
 
     private void generateCalendar() {
         Calendar calendar = Calendar.getInstance();
@@ -103,7 +113,7 @@ public class SessionBookingActivity extends AppCompatActivity {
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.width = 0;
                 params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                params.setMargins(8, 8, 8, 8); // ✅ margin for weekday headers
+                params.setMargins(8, 8, 8, 8);
                 params.columnSpec = GridLayout.spec(i, 1f);
                 params.rowSpec = GridLayout.spec(0);
                 header.setLayoutParams(params);
@@ -140,12 +150,12 @@ public class SessionBookingActivity extends AppCompatActivity {
                 dayView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 dayView.setGravity(Gravity.CENTER);
                 dayView.setBackgroundResource(R.drawable.calendar_cell_border);
-                dayView.setPadding(0, 25, 0, 25); // ✅ padding inside each cell
+                dayView.setPadding(0, 25, 0, 25);
 
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
                 params.width = 0;
                 params.height = cellWidth;
-                params.setMargins(8, 8, 8, 8); // ✅ margin between cells
+                params.setMargins(8, 8, 8, 8);
                 params.columnSpec = GridLayout.spec(col, 1f);
                 params.rowSpec = GridLayout.spec(row);
                 dayView.setLayoutParams(params);
