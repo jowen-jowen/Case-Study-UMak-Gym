@@ -41,7 +41,6 @@ public class Payment extends AppCompatActivity {
             startActivity(intent);
             finish(); // optional: finishes current activity so it doesn't stay in back stack
         });
-
     }
 
     private void initializeWebView() {
