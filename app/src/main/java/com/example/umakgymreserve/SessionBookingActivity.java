@@ -37,7 +37,7 @@ public class SessionBookingActivity extends AppCompatActivity {
 
         btnSelectDate.setOnClickListener(v -> {
             if (!selectedDates.isEmpty()) {
-                StringBuilder sb = new StringBuilder("Selected: ");
+                StringBuilder sb = new StringBuilder("Selected:\n");
                 for (Calendar date : selectedDates) {
                     sb.append(sdf.format(date.getTime())).append("\n");
                 }
@@ -51,13 +51,10 @@ public class SessionBookingActivity extends AppCompatActivity {
         btnClearSelection.setOnClickListener(v -> {
             for (Map.Entry<TextView, Calendar> entry : dateViewsMap.entrySet()) {
                 TextView dayView = entry.getKey();
-
-                if (!dayView.isEnabled()) continue; // skip disabled dates (weekends/past)
-
+                if (!dayView.isEnabled()) continue;
                 dayView.setBackgroundResource(R.drawable.calendar_cell_border);
                 dayView.setTextColor(Color.BLACK);
             }
-
             selectedDates.clear();
             tvSelectedDate.setText("No date selected");
         });
@@ -74,38 +71,50 @@ public class SessionBookingActivity extends AppCompatActivity {
         calendar.set(Calendar.SECOND, 0);
         calendar.set(Calendar.MILLISECOND, 0);
 
-        final int firstDay = calendar.get(Calendar.DAY_OF_WEEK) - 1; // Sunday=1, so subtract 1 to make Sunday=0 index
         final int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
-        // 'today' at midnight for comparison
         final Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         today.set(Calendar.MILLISECOND, 0);
 
+        String[] weekdayLabels = {"Mon", "Tue", "Wed", "Thu", "Fri"};
+
         calendarGrid.post(() -> {
             int gridWidth = calendarGrid.getWidth();
-            int cellWidth = gridWidth / 7; // 7 columns
+            int cellWidth = gridWidth / 5;
 
             calendarGrid.removeAllViews();
-            calendarGrid.setColumnCount(7);
-            calendarGrid.setRowCount(6);
+            calendarGrid.setColumnCount(5);
+            calendarGrid.setRowCount(7); // 1 for headers + up to 6 weeks
 
-            // Add empty cells before the first day of the month
-            for (int i = 0; i < firstDay; i++) {
-                TextView emptyView = new TextView(this);
-                GridLayout.LayoutParams emptyParams = new GridLayout.LayoutParams();
-                emptyParams.width = cellWidth;
-                emptyParams.height = cellWidth;
-                emptyParams.setMargins(2, 2, 2, 2);
-                emptyParams.columnSpec = GridLayout.spec(i);
-                emptyParams.rowSpec = GridLayout.spec(0);
-                emptyView.setLayoutParams(emptyParams);
-                calendarGrid.addView(emptyView);
+            // === WEEKDAY HEADERS ===
+            for (int i = 0; i < 5; i++) {
+                TextView header = new TextView(this);
+                header.setText(weekdayLabels[i]);
+                header.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                header.setGravity(Gravity.CENTER);
+                header.setBackgroundColor(Color.LTGRAY);
+                header.setTextColor(Color.BLACK);
+                header.setTextSize(14);
+                header.setPadding(0, 10, 0, 10);
+
+                GridLayout.LayoutParams params = new GridLayout.LayoutParams();
+                params.width = 0;
+                params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                params.setMargins(8, 8, 8, 8); // ✅ margin for weekday headers
+                params.columnSpec = GridLayout.spec(i, 1f);
+                params.rowSpec = GridLayout.spec(0);
+                header.setLayoutParams(params);
+
+                calendarGrid.addView(header);
             }
 
-            // Add day cells
+            int row = 1;
+            int col;
+
+            // === DATE CELLS ===
             for (int day = 1; day <= daysInMonth; day++) {
                 Calendar cellDate = Calendar.getInstance();
                 cellDate.set(currentYear, currentMonth, day);
@@ -114,32 +123,35 @@ public class SessionBookingActivity extends AppCompatActivity {
                 cellDate.set(Calendar.SECOND, 0);
                 cellDate.set(Calendar.MILLISECOND, 0);
 
-                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK);
+                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK); // Sun=1, Mon=2, ..., Sat=7
+
+                // Skip weekends
+                if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) continue;
+
+                // Map: Mon=2 → 0, Tue=3 → 1, ..., Fri=6 → 4
+                col = dayOfWeek - Calendar.MONDAY;
+
+                if (col == 0 && day > 1) {
+                    row++;
+                }
 
                 TextView dayView = new TextView(this);
                 dayView.setText(String.valueOf(day));
                 dayView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 dayView.setGravity(Gravity.CENTER);
                 dayView.setBackgroundResource(R.drawable.calendar_cell_border);
-                dayView.setPadding(0, 20, 0, 20);
+                dayView.setPadding(0, 25, 0, 25); // ✅ padding inside each cell
 
                 GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-                params.width = cellWidth;
-                params.height = cellWidth;  // square cell
-                params.setMargins(2, 2, 2, 2);
-
-                int position = firstDay + day - 1;
-                int column = position % 7;
-                int row = position / 7;
-
-                params.columnSpec = GridLayout.spec(column);
+                params.width = 0;
+                params.height = cellWidth;
+                params.setMargins(8, 8, 8, 8); // ✅ margin between cells
+                params.columnSpec = GridLayout.spec(col, 1f);
                 params.rowSpec = GridLayout.spec(row);
                 dayView.setLayoutParams(params);
 
                 boolean isPast = cellDate.before(today);
-                boolean isWeekend = (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY);
-
-                if (isPast || isWeekend) {
+                if (isPast) {
                     dayView.setTextColor(Color.GRAY);
                     dayView.setEnabled(false);
                 } else {
@@ -151,8 +163,20 @@ public class SessionBookingActivity extends AppCompatActivity {
                         Calendar selected = dateViewsMap.get(view);
                         TextView selectedView = (TextView) view;
 
-                        if (selectedDates.contains(selected)) {
-                            selectedDates.remove(selected);
+                        boolean alreadySelected = false;
+                        for (Calendar c : selectedDates) {
+                            if (c.get(Calendar.YEAR) == selected.get(Calendar.YEAR)
+                                    && c.get(Calendar.MONTH) == selected.get(Calendar.MONTH)
+                                    && c.get(Calendar.DAY_OF_MONTH) == selected.get(Calendar.DAY_OF_MONTH)) {
+                                alreadySelected = true;
+                                break;
+                            }
+                        }
+
+                        if (alreadySelected) {
+                            selectedDates.removeIf(c -> c.get(Calendar.YEAR) == selected.get(Calendar.YEAR)
+                                    && c.get(Calendar.MONTH) == selected.get(Calendar.MONTH)
+                                    && c.get(Calendar.DAY_OF_MONTH) == selected.get(Calendar.DAY_OF_MONTH));
                             selectedView.setBackgroundResource(R.drawable.calendar_cell_border);
                             selectedView.setTextColor(Color.BLACK);
                         } else if (selectedDates.size() < 5) {
@@ -169,6 +193,4 @@ public class SessionBookingActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
