@@ -3,18 +3,48 @@ package com.example.umakgymreserve;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.AdapterView;
+import android.view.View;
+import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LegsActivity extends AppCompatActivity {
 
     ListView listViewLegs;
+    TextView descriptionTextView;
+    private HashMap<String, String> exerciseDescriptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_legs); // Make sure you have activity_legs.xml
+        setContentView(R.layout.activity_legs);
 
-        listViewLegs = findViewById(R.id.listViewLegs); // Make sure your ListView in activity_legs.xml has this ID
+        listViewLegs = findViewById(R.id.listViewLegs);
+        descriptionTextView = findViewById(R.id.descriptionTextView);
+
+
+        exerciseDescriptions = new HashMap<>();
+        exerciseDescriptions.put("Barbell Squats (High Bar & Low Bar)",
+                "The king of leg exercises. High bar emphasizes quads, low bar works more posterior chain.");
+        exerciseDescriptions.put("Leg Press",
+                "Great for quad development with less spinal loading than squats. Keep feet placement varied.");
+        exerciseDescriptions.put("Romanian Deadlifts (RDLs)",
+                "Targets hamstrings and glutes. Maintain slight knee bend and flat back throughout.");
+        exerciseDescriptions.put("Walking Lunges",
+                "Develops single-leg strength and balance. Great for athletic performance.");
+        exerciseDescriptions.put("Leg Extensions",
+                "Isolates the quadriceps. Use controlled movements to protect knees.");
+        exerciseDescriptions.put("Hamstring Curls (Lying or Seated)",
+                "Isolates the hamstrings. Lying version hits more of the biceps femoris.");
+        exerciseDescriptions.put("Calf Raises (Standing or Seated)",
+                "Standing hits gastrocnemius, seated targets soleus. Do full range of motion.");
+        exerciseDescriptions.put("Step-Ups",
+                "Functional exercise that works quads, glutes, and improves balance.");
+        exerciseDescriptions.put("Glute Bridges/Hip Thrusts (Barbell or Bodyweight)",
+                "Excellent for glute activation. Can progressively overload with weight.");
+        exerciseDescriptions.put("Goblet Squats",
+                "Beginner-friendly squat variation that helps maintain upright torso position.");
 
         String[] legsExercises = {
                 "Barbell Squats (High Bar & Low Bar)",
@@ -36,5 +66,23 @@ public class LegsActivity extends AppCompatActivity {
         );
 
         listViewLegs.setAdapter(adapter);
+
+        // Set click listener for ListView items
+        listViewLegs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedExercise = (String) parent.getItemAtPosition(position);
+                displayExerciseDescription(selectedExercise);
+            }
+        });
+    }
+
+    private void displayExerciseDescription(String exerciseName) {
+        String description = exerciseDescriptions.get(exerciseName);
+        if (description != null) {
+            descriptionTextView.setText(description);
+        } else {
+            descriptionTextView.setText("Description not available for this exercise.");
+        }
     }
 }

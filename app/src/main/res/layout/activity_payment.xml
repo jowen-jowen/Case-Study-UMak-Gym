@@ -42,28 +42,25 @@
 
         <Button
             android:id="@+id/btnBackHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="#052865"
-            android:fontFamily="@font/roboto"
-            android:paddingStart="30dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="30dp"
-            android:paddingBottom="20dp"
+            android:layout_width="147dp"
+            android:layout_height="65dp"
+            android:layout_margin="16dp"
+            android:backgroundTint="#052865"
             android:text="Back to Home"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="@color/white"
+            app:strokeWidth="2sp" />
 
         <Button
             android:id="@+id/btnStartPayment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="124dp"
-            android:background="#052865"
+            android:backgroundTint="#40AE11"
             android:fontFamily="@font/roboto"
             android:padding="12dp"
             android:text="Pay ₱100 via PayMongo"
@@ -71,7 +68,9 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            app:strokeColor="@color/black"
+            app:strokeWidth="1sp"/>
 
         <ImageView
             android:id="@+id/imageView2"

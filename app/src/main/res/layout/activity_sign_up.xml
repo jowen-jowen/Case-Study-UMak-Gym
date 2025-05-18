@@ -183,7 +183,7 @@
         android:hint="@string/enter_umak_email"
         android:textColor="#000000"
         android:textColorHint="#A3000000"
-        android:textSize="15sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"

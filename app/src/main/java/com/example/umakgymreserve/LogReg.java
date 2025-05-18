@@ -57,26 +57,15 @@ public class LogReg extends AppCompatActivity {
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
 
-            if (username.isEmpty()) {
-                user.setError("USERNAME IS EMPTY!");
-            }
-
-            if (password.isEmpty()) {
-                pass.setError("PASSWORD IS EMPTY!");
-            }
-
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                     response -> {
                         try {
                             JSONObject obj = new JSONObject(response);
                             String status = obj.getString("status");
+
                             if (status.equals("success")) {
-                                String firstName = obj.getString("firstName");
-                                String type = obj.getString("typeRegister");
                                 Intent intent = new Intent(LogReg.this, ReservationPage.class);
                                 intent.putExtra("username", username); // Optional
-                                intent.putExtra("firstName", firstName);
-                                intent.putExtra("type", type);
                                 startActivity(intent);
                                 finish();
                             } else {
