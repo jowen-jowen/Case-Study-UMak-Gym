@@ -39,11 +39,6 @@ public class OtpVerif extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_otp_verif);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
         sendOtp = findViewById(R.id.btnSentOtp);
         confirmOtp = findViewById(R.id.btnConfirmOtp);
@@ -60,7 +55,6 @@ public class OtpVerif extends AppCompatActivity {
         umakEmailDisplay.setText(emailFromIntent);
 
         String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
-
         sendOtp.setOnClickListener(v -> {
             if (!sendOtp.isEnabled()) return;
             sendOtp.setEnabled(false);
@@ -84,8 +78,6 @@ public class OtpVerif extends AppCompatActivity {
                         }
                     }, volleyError -> {
                 Toast.makeText(OtpVerif.this, "Volley Error " + volleyError, Toast.LENGTH_SHORT).show();
-                sendOtp.setEnabled(true);
-                sendOtp.setClickable(true);
             }) {
                 @Override
                 protected Map<String, String> getParams() {

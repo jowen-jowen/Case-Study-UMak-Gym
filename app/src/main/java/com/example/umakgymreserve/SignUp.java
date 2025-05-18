@@ -100,7 +100,6 @@ public class SignUp extends AppCompatActivity {
                         intent.putExtra("myEmail", umakEmail);
                         intent.putExtra("typeRegister", typeRegister);
                         startActivity(intent);
-                        finish();
                     } else {
                         email.setError("Invalid UMAK ACCOUNT");
                     }
