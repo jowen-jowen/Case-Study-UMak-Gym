@@ -59,17 +59,15 @@ public class OtpVerif extends AppCompatActivity {
         String emailFromIntent = intent.getStringExtra("myEmail");
         umakEmailDisplay.setText(emailFromIntent);
 
-        otpSending(emailFromIntent);
-    }
+        String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
 
-    String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
-
-    public void otpSending(String emailFromIntent) {
         sendOtp.setOnClickListener(v -> {
+            if (!sendOtp.isEnabled()) return;
             sendOtp.setEnabled(false);
             sendOtp.setClickable(false);
             Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
             Log.d("OtpVerif", "Send OTP clicked");
+
             StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
                     response -> {
                         try {
@@ -85,10 +83,10 @@ public class OtpVerif extends AppCompatActivity {
                             Toast.makeText(OtpVerif.this, "Response parsing error", Toast.LENGTH_SHORT).show();
                         }
                     }, volleyError -> {
-                            Toast.makeText(OtpVerif.this, "Volley Error " + volleyError, Toast.LENGTH_SHORT).show();
-                            sendOtp.setEnabled(true);
-                            sendOtp.setClickable(true);
-                    }) {
+                Toast.makeText(OtpVerif.this, "Volley Error " + volleyError, Toast.LENGTH_SHORT).show();
+                sendOtp.setEnabled(true);
+                sendOtp.setClickable(true);
+            }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
@@ -99,7 +97,12 @@ public class OtpVerif extends AppCompatActivity {
             RequestQueue queue = Volley.newRequestQueue(this);
             queue.add(stringRequest);
         });
-        confirmOtp.setOnClickListener(b -> {
+
+        otpConfirmation();
+    }
+
+    private void otpConfirmation() {
+        confirmOtp.setOnClickListener(v -> {
             //compare the entered OTP with the generated OTP
             String enteredOtp = typeOtp.getText().toString().trim();
 
