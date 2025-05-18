@@ -15,7 +15,7 @@ public class ContactUsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
 
-        btnHome = findViewById(R.id.btnBackHomePayment);
+        btnHome = findViewById(R.id.btnBackHomeContact);
         btnHome.setOnClickListener(v -> {
             Intent intent = new Intent(ContactUsActivity.this, ReservationPage.class);
             String firstNameExport = getIntent().getStringExtra("firstName");
