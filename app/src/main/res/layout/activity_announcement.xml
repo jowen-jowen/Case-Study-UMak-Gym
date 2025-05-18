@@ -47,26 +47,19 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <Button
-        android:id="@+id/btnBackHomePayment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:id="@+id/btnBackHomeAnnouncement"
+        android:layout_width="147dp"
+        android:layout_height="65dp"
         android:layout_margin="16dp"
-        android:layout_marginStart="137dp"
-        android:layout_marginEnd="137dp"
-        android:layout_marginBottom="16dp"
-        android:background="#052865"
-        android:fontFamily="@font/roboto"
-        android:paddingStart="30dp"
-        android:paddingTop="20dp"
-        android:paddingEnd="30dp"
-        android:paddingBottom="20dp"
-        android:text="@string/back_to_home"
+        android:backgroundTint="#052865"
+        android:text="Back to Home"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="2dp"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -80,10 +73,11 @@
         android:text="@string/attention_all_university_fitness_gym_users_n_neffective_april_22_2024_there_will_be_a_change_in_the_usage_fees_for_the_university_fitness_gym_please_refer_the_updated_fee_schedule_below_n_n_n_nstudents_p30_00_per_session_n_nfaculty_employee_p20_00_per_session_n_nalumni_p50_00_per_session_n_n_n_nthank_you_for_your_understanding_and_cooperation_n_nstay_healthy_and_active"
         android:textColor="#000000"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/btnBackHomePayment"
+        app:layout_constraintBottom_toTopOf="@+id/btnBackHomeAnnouncement"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

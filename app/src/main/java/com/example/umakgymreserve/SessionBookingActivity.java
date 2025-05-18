@@ -19,7 +19,7 @@ import java.util.*;
 public class SessionBookingActivity extends AppCompatActivity {
     private GridLayout calendarGrid;
     private TextView tvSelectedDate;
-    private Button btnSelectDate, btnClearSelection, btnBack;
+    private Button btnSelectDate, btnClearSelection, btnBack, btnProceed;
     private final List<Calendar> selectedDates = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
     private final Map<TextView, Calendar> dateViewsMap = new HashMap<>();
@@ -33,6 +33,8 @@ public class SessionBookingActivity extends AppCompatActivity {
         tvSelectedDate = findViewById(R.id.tvSelectedDate);
         btnSelectDate = findViewById(R.id.btnSelectDate);
         btnClearSelection = findViewById(R.id.btnClearSelection);
+        btnBack = findViewById(R.id.btnBackToMain);
+        btnProceed = findViewById(R.id.btnProceed);
 
         generateCalendar();
 
@@ -60,10 +62,16 @@ public class SessionBookingActivity extends AppCompatActivity {
             tvSelectedDate.setText("No date selected");
         });
 
-        btnBack = findViewById(R.id.btnBackToMain);
+
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+            startActivity(intent);
+            finish(); // optional: finishes current activity so it doesn't stay in back stack
+        });
+
+        btnProceed.setOnClickListener(v -> {
+            Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
             startActivity(intent);
             finish(); // optional: finishes current activity so it doesn't stay in back stack
         });

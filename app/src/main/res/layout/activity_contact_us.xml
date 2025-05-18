@@ -45,26 +45,19 @@
             app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
         <Button
-            android:id="@+id/btnBackHomePayment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:id="@+id/btnBackHomeContact"
+            android:layout_width="147dp"
+            android:layout_height="65dp"
             android:layout_margin="16dp"
-            android:layout_marginStart="137dp"
-            android:layout_marginEnd="137dp"
-            android:layout_marginBottom="16dp"
-            android:background="#052865"
-            android:fontFamily="@font/roboto"
-            android:paddingStart="30dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="30dp"
-            android:paddingBottom="20dp"
+            android:backgroundTint="#052865"
             android:text="Back to Home"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:strokeColor="#FFFFFF"
+            app:strokeWidth="2dp"/>
 
         <RelativeLayout
             android:id="@+id/relativeLayout"
@@ -74,7 +67,7 @@
             android:layout_marginEnd="84dp"
             android:layout_marginBottom="15dp"
             android:background="#FAFAFA"
-            app:layout_constraintBottom_toTopOf="@+id/btnBackHomePayment"
+            app:layout_constraintBottom_toTopOf="@+id/btnBackHomeContact"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 

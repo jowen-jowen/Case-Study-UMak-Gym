@@ -18,8 +18,10 @@ public class ContactUsActivity extends AppCompatActivity {
         btnHome = findViewById(R.id.btnBackHomePayment);
         btnHome.setOnClickListener(v -> {
             Intent intent = new Intent(ContactUsActivity.this, ReservationPage.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            intent.putExtra("firstName", firstNameExport);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
 
     }

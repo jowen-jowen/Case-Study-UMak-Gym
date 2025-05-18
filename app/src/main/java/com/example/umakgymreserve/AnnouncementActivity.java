@@ -16,8 +16,10 @@ public class AnnouncementActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            intent.putExtra("firstName", firstNameExport);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
 
     }
