@@ -1,6 +1,5 @@
 package com.example.umakgymreserve;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -13,9 +12,7 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,6 +30,7 @@ public class OtpVerif extends AppCompatActivity {
     EditText typeOtp;
     TextView umakEmailDisplay;
     String otp;
+    boolean otpAlreadySent = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +54,13 @@ public class OtpVerif extends AppCompatActivity {
 
         String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
         sendOtp.setOnClickListener(v -> {
-            if (!sendOtp.isEnabled()) return;
+
+            if (otpAlreadySent) {
+                Toast.makeText(OtpVerif.this, "OTP already sent.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            otpAlreadySent = true;
             sendOtp.setEnabled(false);
             sendOtp.setClickable(false);
             Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
