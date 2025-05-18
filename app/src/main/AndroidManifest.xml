@@ -17,6 +17,26 @@
         android:theme="@style/Theme.UmakGymReserve"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
+        <activity
+            android:name=".PaymentSuccess"
+            android:exported="true">
+            <!-- Intent filter for handling paymongo://success URI -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:scheme="paymongo"
+                    android:host="success" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".Payment"
+            android:exported="false" />
         <activity
             android:name=".ReservationPage"
             android:exported="false" />
@@ -37,7 +57,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,6 +64,7 @@
         <activity android:name=".WorkoutsActivity" />
         <activity android:name=".ContactUsActivity" />
         <activity android:name=".AnnouncementActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

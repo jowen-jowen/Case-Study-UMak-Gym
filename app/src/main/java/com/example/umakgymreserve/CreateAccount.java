@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -46,7 +45,7 @@ public class CreateAccount extends AppCompatActivity {
         createUser = findViewById(R.id.etCreateUsername);
         createPass = findViewById(R.id.etCreatePassword);
 
-        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        confirmAcc.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         confirmAcc.setBackgroundResource(R.drawable.rounded_border_trans);
         accountCreateConfirmation();
     }
@@ -60,6 +59,14 @@ public class CreateAccount extends AppCompatActivity {
             String receivedType = fetchSignUp.getStringExtra("typeRegister");
             String receivedFirstName = fetchSignUp.getStringExtra("firstName");
             String receivedLastName = fetchSignUp.getStringExtra("lastName");
+
+            if (username.isEmpty()) {
+                createUser.setError("USERNAME IS EMPTY!");
+            }
+
+            if (password.isEmpty()) {
+                createPass.setError("PASSWORD IS EMPTY!");
+            }
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
                     response -> {

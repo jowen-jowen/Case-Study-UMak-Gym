@@ -1,17 +1,13 @@
 package com.example.umakgymreserve;
 
 import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +17,21 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class OtpVerif extends AppCompatActivity {
     Button sendOtp, confirmOtp;
     EditText typeOtp;
     TextView umakEmailDisplay;
-    AlertDialog dialog;
     String otp;
 
     @Override
@@ -44,43 +50,55 @@ public class OtpVerif extends AppCompatActivity {
         typeOtp = findViewById(R.id.etTypeOtp);
         umakEmailDisplay = findViewById(R.id.tvUmakEmail);
 
-        sendOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
-        confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        sendOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+        confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         sendOtp.setBackgroundResource(R.drawable.rounded_border_trans);
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
 
-        // Get the email from the intent
         Intent intent = getIntent();
         String emailFromIntent = intent.getStringExtra("myEmail");
         umakEmailDisplay.setText(emailFromIntent);
 
-        otpSending();
+        otpSending(emailFromIntent);
     }
 
-    public void otpSending() {
+    String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
+
+    public void otpSending(String emailFromIntent) {
         sendOtp.setOnClickListener(v -> {
-            new Handler().postDelayed(() -> {
-                showProgress();
-                //pang generate ng OTP(offline nga lng, galing sa dating code eh)
-                int otpCode = (int) (Math.random() * 900000) + 100000;
-                otp = String.valueOf(otpCode);
-
-                typeOtp.setFocusable(true);
-                Toast.makeText(getApplicationContext(), "Your OTP: " + otpCode, Toast.LENGTH_SHORT).show();
-                typeOtp.setText(otp);
-                dismissProgress();
-
-                //Optional lng to kase yung gamit kong emulator is walang clipboard
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                if (clipboardManager != null) {
-                    ClipData clip = ClipData.newPlainText("OTP", otp);
-                    clipboardManager.setPrimaryClip(clip);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Clipboard not available", Toast.LENGTH_SHORT).show();
+            sendOtp.setEnabled(false);
+            sendOtp.setClickable(false);
+            Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
+            Log.d("OtpVerif", "Send OTP clicked");
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
+                    response -> {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            boolean success = object.getBoolean("success");
+                            if (success) {
+                                otp = object.getString("otp").trim();
+                            } else {
+                                String message = object.getString("message");
+                                Toast.makeText(OtpVerif.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(OtpVerif.this, "Response parsing error", Toast.LENGTH_SHORT).show();
+                        }
+                    }, volleyError -> {
+                            Toast.makeText(OtpVerif.this, "Volley Error " + volleyError, Toast.LENGTH_SHORT).show();
+                            sendOtp.setEnabled(true);
+                            sendOtp.setClickable(true);
+                    }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("email", emailFromIntent);
+                    return params;
                 }
-            }, 2000); // two-second delay
+            };
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(stringRequest);
         });
-
         confirmOtp.setOnClickListener(b -> {
             //compare the entered OTP with the generated OTP
             String enteredOtp = typeOtp.getText().toString().trim();
@@ -105,22 +123,5 @@ public class OtpVerif extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Invalid OTP", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    private void showProgress() {
-        ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setIndeterminate(true);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Generating OTP").setView(progressBar).setCancelable(false);
-
-        dialog = builder.create();
-        dialog.show();
-    }
-
-    private void dismissProgress() {
-        if (dialog != null && dialog.isShowing()) {
-            dialog.dismiss();
-        }
     }
 }

@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/background_gradient">
+    android:background="#052865"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView13"
@@ -26,16 +26,15 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="194dp"
-        android:layout_height="140dp"
+        android:layout_width="201dp"
+        android:layout_height="201dp"
         android:layout_marginBottom="40dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/textView13"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.757"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/umak_logo" />
 
     <Button
@@ -44,11 +43,12 @@
         android:layout_height="84dp"
         android:layout_marginLeft="70sp"
         android:layout_marginRight="70sp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="216dp"
         android:background="@drawable/rounded_border_trans"
+        android:backgroundTint="#052865"
         android:fontFamily="@font/roboto"
         android:paddingStart="5dp"
-        android:paddingTop="20dp"
+        android:paddingTop="10dp"
         android:paddingEnd="5dp"
         android:paddingBottom="10dp"
         android:text="@string/button_start"
@@ -57,6 +57,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 

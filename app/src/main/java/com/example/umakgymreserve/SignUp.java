@@ -43,12 +43,12 @@ public class SignUp extends AppCompatActivity {
         alum = findViewById(R.id.rdAlumni);
         price = findViewById(R.id.tvPrice);
         email = findViewById(R.id.etUmakEmail);
-        confirm = findViewById(R.id.btnConfirm);
+        confirm = findViewById(R.id.btnBackHomePayment);
 
         stud.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         emp.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         alum.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
-        confirm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#cfcf8c")));
+        confirm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         confirm.setBackgroundResource(R.drawable.rounded_border_trans);
 
         setPrice();
@@ -90,7 +90,6 @@ public class SignUp extends AppCompatActivity {
             }
             RadioButton selectedRdButton = findViewById(selectedId);
             String typeRegister = selectedRdButton.getText().toString();
-
 
             if (firstName.matches(firstNameValidator)) {
                 if (lastName.matches(lastNameValidator)) {
