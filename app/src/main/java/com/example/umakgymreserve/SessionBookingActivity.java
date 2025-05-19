@@ -19,7 +19,7 @@ import java.util.*;
 public class SessionBookingActivity extends AppCompatActivity {
     private GridLayout calendarGrid;
     private TextView tvSelectedDate;
-    private Button btnSelectDate, btnClearSelection, btnBack, btnProceed;
+    Button btnSelectDate, btnClearSelection, btnBack, btnProceed;
     private final List<Calendar> selectedDates = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
     private final Map<TextView, Calendar> dateViewsMap = new HashMap<>();
