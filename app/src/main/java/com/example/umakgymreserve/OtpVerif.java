@@ -1,10 +1,10 @@
 package com.example.umakgymreserve;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,10 +13,8 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
@@ -55,11 +53,12 @@ public class OtpVerif extends AppCompatActivity {
         umakEmailDisplay.setText(emailFromIntent);
 
         String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
+
         sendOtp.setOnClickListener(v -> {
-            if (!sendOtp.isEnabled()) return;
             sendOtp.setEnabled(false);
             sendOtp.setClickable(false);
-            Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
+            sendOtp.setText("Sending...");
+
             Log.d("OtpVerif", "Send OTP clicked");
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
@@ -69,16 +68,35 @@ public class OtpVerif extends AppCompatActivity {
                             boolean success = object.getBoolean("success");
                             if (success) {
                                 otp = object.getString("otp").trim();
+                                Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
+                                sendOtp.setText("OTP Sent");
                             } else {
                                 String message = object.getString("message");
                                 Toast.makeText(OtpVerif.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                sendOtp.setText("Send OTP");
+                                sendOtp.setEnabled(true);
+                                sendOtp.setClickable(true);
                             }
                         } catch (JSONException e) {
                             Toast.makeText(OtpVerif.this, "Response parsing error", Toast.LENGTH_SHORT).show();
+                            sendOtp.setText("Send OTP");
+                            sendOtp.setEnabled(true);
+                            sendOtp.setClickable(true);
                         }
-                    }, volleyError -> {
-                Toast.makeText(OtpVerif.this, "Volley Error " + volleyError, Toast.LENGTH_SHORT).show();
-            }) {
+
+                        // Re-enable the button after 30 seconds
+                        new Handler().postDelayed(() -> {
+                            sendOtp.setEnabled(true);
+                            sendOtp.setClickable(true);
+                            sendOtp.setText("Send OTP");
+                        }, 30000);
+                    },
+                    error -> {
+                        Toast.makeText(OtpVerif.this, "Volley Error: " + error.toString(), Toast.LENGTH_SHORT).show();
+                        sendOtp.setText("Send OTP");
+                        sendOtp.setEnabled(true);
+                        sendOtp.setClickable(true);
+                    }) {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
@@ -86,19 +104,26 @@ public class OtpVerif extends AppCompatActivity {
                     return params;
                 }
             };
+
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    0,
+                    0,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+
             RequestQueue queue = Volley.newRequestQueue(this);
             queue.add(stringRequest);
         });
+
 
         otpConfirmation();
     }
 
     private void otpConfirmation() {
         confirmOtp.setOnClickListener(v -> {
-            //compare the entered OTP with the generated OTP
             String enteredOtp = typeOtp.getText().toString().trim();
 
-            //pass the data again
             Intent fetchData = getIntent();
             String firstName = fetchData.getStringExtra("firstName");
             String lastName = fetchData.getStringExtra("lastName");
