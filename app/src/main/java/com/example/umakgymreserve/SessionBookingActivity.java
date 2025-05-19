@@ -36,6 +36,8 @@ public class SessionBookingActivity extends AppCompatActivity {
         btnBack = findViewById(R.id.btnBackToMain);
         btnProceed = findViewById(R.id.btnProceed);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+
         generateCalendar();
 
         btnSelectDate.setOnClickListener(v -> {
@@ -66,8 +68,9 @@ public class SessionBookingActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+            intent.putExtra("firstName", firstNameExport);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
 
         btnProceed.setOnClickListener(v -> {
