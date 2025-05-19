@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Button;
 import android.widget.AdapterView;
 import android.view.View;
 import java.util.HashMap;
@@ -22,7 +23,15 @@ public class BackActivity extends AppCompatActivity {
 
         listViewBack = findViewById(R.id.listViewBack);
         descriptionTextView = findViewById(R.id.descriptionTextView);
+        Button backButton = findViewById(R.id.btn2);
 
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Pull-Ups (Various Grips)", "Pull-Ups target your lats, traps, and biceps. Use different grips to emphasize different muscles.");

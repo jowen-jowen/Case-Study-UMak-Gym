@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView;
 import android.view.View;
+import android.widget.Button;
 import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,14 @@ public class BicepsActivity extends AppCompatActivity {
 
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
+        Button backButton = findViewById(R.id.btn3); // BACK button
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Go back to previous screen
+            }
+        });
 
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Barbell Bicep Curls",
@@ -47,27 +55,16 @@ public class BicepsActivity extends AppCompatActivity {
                 "Combines regular and reverse curl. Rotate palms down during lowering phase for complete forearm work.");
 
         String[] bicepsExercises = {
-                "Barbell Bicep Curls",
-                "Dumbbell Bicep Curls",
-                "Hammer Curls",
-                "Concentration Curls",
-                "Incline Dumbbell Curls",
-                "Preacher Curls",
-                "Cable Bicep Curls",
-                "Reverse Curls",
-                "Chin-Ups (Close Grip, Palms Facing You)",
-                "Zottman Curls"
+                "Barbell Bicep Curls", "Dumbbell Bicep Curls", "Hammer Curls", "Concentration Curls",
+                "Incline Dumbbell Curls", "Preacher Curls", "Cable Bicep Curls", "Reverse Curls",
+                "Chin-Ups (Close Grip, Palms Facing You)", "Zottman Curls"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                bicepsExercises
+                this, android.R.layout.simple_list_item_1, bicepsExercises
         );
-
         listViewBiceps.setAdapter(adapter);
 
-        // Set click listener for ListView items
         listViewBiceps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,10 +76,8 @@ public class BicepsActivity extends AppCompatActivity {
 
     private void displayExerciseDescription(String exerciseName) {
         String description = exerciseDescriptions.get(exerciseName);
-        if (description != null) {
-            descriptionTextView.setText(description);
-        } else {
-            descriptionTextView.setText("Description not available for this exercise.");
-        }
+        descriptionTextView.setText(description != null ? description : "Description not available for this exercise.");
     }
 }
+
+
