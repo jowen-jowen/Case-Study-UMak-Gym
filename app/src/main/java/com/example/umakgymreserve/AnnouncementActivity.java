@@ -12,7 +12,7 @@ public class AnnouncementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcement);
 
-        Button btnBack = findViewById(R.id.btnBackHomePayment);
+        Button btnBack = findViewById(R.id.btnBackHomeAnnouncement);
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
@@ -21,6 +21,5 @@ public class AnnouncementActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
     }
 }

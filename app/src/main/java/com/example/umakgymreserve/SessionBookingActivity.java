@@ -39,15 +39,15 @@ public class SessionBookingActivity extends AppCompatActivity {
         generateCalendar();
 
         btnSelectDate.setOnClickListener(v -> {
-            if (!selectedDates.isEmpty()) {
+            if (selectedDates.size() != 5) {
+                tvSelectedDate.setText("You must select exactly 5 dates.");
+                Toast.makeText(this, "Please select exactly 5 booking dates.", Toast.LENGTH_SHORT).show();
+            } else {
                 StringBuilder sb = new StringBuilder("Selected:\n");
                 for (Calendar date : selectedDates) {
                     sb.append(sdf.format(date.getTime())).append("\n");
                 }
                 tvSelectedDate.setText(sb.toString().trim());
-            } else {
-                tvSelectedDate.setText("No date selected");
-                Toast.makeText(this, "Please select a valid date first.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -62,8 +62,6 @@ public class SessionBookingActivity extends AppCompatActivity {
             tvSelectedDate.setText("No date selected");
         });
 
-
-
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
             startActivity(intent);
@@ -76,7 +74,6 @@ public class SessionBookingActivity extends AppCompatActivity {
             finish(); // optional: finishes current activity so it doesn't stay in back stack
         });
     }
-
 
     private void generateCalendar() {
         Calendar calendar = Calendar.getInstance();
@@ -132,7 +129,7 @@ public class SessionBookingActivity extends AppCompatActivity {
             int row = 1;
             int col;
 
-            // === DATE CELLS ===
+
             for (int day = 1; day <= daysInMonth; day++) {
                 Calendar cellDate = Calendar.getInstance();
                 cellDate.set(currentYear, currentMonth, day);
@@ -141,12 +138,11 @@ public class SessionBookingActivity extends AppCompatActivity {
                 cellDate.set(Calendar.SECOND, 0);
                 cellDate.set(Calendar.MILLISECOND, 0);
 
-                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK); // Sun=1, Mon=2, ..., Sat=7
+                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK);
 
-                // Skip weekends
                 if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) continue;
 
-                // Map: Mon=2 → 0, Tue=3 → 1, ..., Fri=6 → 4
+
                 col = dayOfWeek - Calendar.MONDAY;
 
                 if (col == 0 && day > 1) {
