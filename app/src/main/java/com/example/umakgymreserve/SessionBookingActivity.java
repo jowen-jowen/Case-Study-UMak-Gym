@@ -39,15 +39,15 @@ public class SessionBookingActivity extends AppCompatActivity {
         generateCalendar();
 
         btnSelectDate.setOnClickListener(v -> {
-            if (selectedDates.size() != 5) {
-                tvSelectedDate.setText("You must select exactly 5 dates.");
-                Toast.makeText(this, "Please select exactly 5 booking dates.", Toast.LENGTH_SHORT).show();
+            if (selectedDates.isEmpty()) {
+                tvSelectedDate.setText("Please select a date.");
+                Toast.makeText(this, "You must select one booking date.", Toast.LENGTH_SHORT).show();
+            } else if (selectedDates.size() > 1) {
+                tvSelectedDate.setText("You can only select one date.");
+                Toast.makeText(this, "Please select only ONE booking date.", Toast.LENGTH_SHORT).show();
             } else {
-                StringBuilder sb = new StringBuilder("Selected:\n");
-                for (Calendar date : selectedDates) {
-                    sb.append(sdf.format(date.getTime())).append("\n");
-                }
-                tvSelectedDate.setText(sb.toString().trim());
+                Calendar date = selectedDates.get(0);
+                tvSelectedDate.setText("Selected: " + sdf.format(date.getTime()));
             }
         });
 
@@ -69,9 +69,13 @@ public class SessionBookingActivity extends AppCompatActivity {
         });
 
         btnProceed.setOnClickListener(v -> {
-            Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
-            startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            if (selectedDates.size() != 1) {
+                Toast.makeText(this, "Please select exactly 1 date to proceed.", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
