@@ -62,7 +62,6 @@ public class LogReg extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             String status = obj.getString("status");
-
                             if (status.equals("success")) {
                                 String firstName = obj.getString("firstName");
                                 String typeRegister = obj.getString("typeRegister");
