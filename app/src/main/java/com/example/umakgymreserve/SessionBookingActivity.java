@@ -41,15 +41,15 @@ public class SessionBookingActivity extends AppCompatActivity {
         generateCalendar();
 
         btnSelectDate.setOnClickListener(v -> {
-            if (!selectedDates.isEmpty()) {
-                StringBuilder sb = new StringBuilder("Selected:\n");
-                for (Calendar date : selectedDates) {
-                    sb.append(sdf.format(date.getTime())).append("\n");
-                }
-                tvSelectedDate.setText(sb.toString().trim());
+            if (selectedDates.isEmpty()) {
+                tvSelectedDate.setText("Please select a date.");
+                Toast.makeText(this, "You must select one booking date.", Toast.LENGTH_SHORT).show();
+            } else if (selectedDates.size() > 1) {
+                tvSelectedDate.setText("You can only select one date.");
+                Toast.makeText(this, "Please select only ONE booking date.", Toast.LENGTH_SHORT).show();
             } else {
-                tvSelectedDate.setText("No date selected");
-                Toast.makeText(this, "Please select a valid date first.", Toast.LENGTH_SHORT).show();
+                Calendar date = selectedDates.get(0);
+                tvSelectedDate.setText("Selected: " + sdf.format(date.getTime()));
             }
         });
 
@@ -64,8 +64,6 @@ public class SessionBookingActivity extends AppCompatActivity {
             tvSelectedDate.setText("No date selected");
         });
 
-
-
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
             intent.putExtra("firstName", firstNameExport);
@@ -74,12 +72,15 @@ public class SessionBookingActivity extends AppCompatActivity {
         });
 
         btnProceed.setOnClickListener(v -> {
-            Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
-            startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            if (selectedDates.size() != 1) {
+                Toast.makeText(this, "Please select exactly 1 date to proceed.", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
-
 
     private void generateCalendar() {
         Calendar calendar = Calendar.getInstance();
@@ -135,7 +136,7 @@ public class SessionBookingActivity extends AppCompatActivity {
             int row = 1;
             int col;
 
-            // === DATE CELLS ===
+
             for (int day = 1; day <= daysInMonth; day++) {
                 Calendar cellDate = Calendar.getInstance();
                 cellDate.set(currentYear, currentMonth, day);
@@ -144,12 +145,11 @@ public class SessionBookingActivity extends AppCompatActivity {
                 cellDate.set(Calendar.SECOND, 0);
                 cellDate.set(Calendar.MILLISECOND, 0);
 
-                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK); // Sun=1, Mon=2, ..., Sat=7
+                int dayOfWeek = cellDate.get(Calendar.DAY_OF_WEEK);
 
-                // Skip weekends
                 if (dayOfWeek == Calendar.SATURDAY || dayOfWeek == Calendar.SUNDAY) continue;
 
-                // Map: Mon=2 → 0, Tue=3 → 1, ..., Fri=6 → 4
+
                 col = dayOfWeek - Calendar.MONDAY;
 
                 if (col == 0 && day > 1) {

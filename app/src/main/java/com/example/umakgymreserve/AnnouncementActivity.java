@@ -21,6 +21,5 @@ public class AnnouncementActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         });
-
     }
 }

@@ -6,6 +6,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView;
 import android.view.View;
+import android.widget.Button;
 import java.util.HashMap;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +23,14 @@ public class LegsActivity extends AppCompatActivity {
 
         listViewLegs = findViewById(R.id.listViewLegs);
         descriptionTextView = findViewById(R.id.descriptionTextView);
+        Button backButton = findViewById(R.id.btn5); // BACK button
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Go back
+            }
+        });
 
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Barbell Squats (High Bar & Low Bar)",
@@ -47,27 +55,17 @@ public class LegsActivity extends AppCompatActivity {
                 "Beginner-friendly squat variation that helps maintain upright torso position.");
 
         String[] legsExercises = {
-                "Barbell Squats (High Bar & Low Bar)",
-                "Leg Press",
-                "Romanian Deadlifts (RDLs)",
-                "Walking Lunges",
-                "Leg Extensions",
-                "Hamstring Curls (Lying or Seated)",
-                "Calf Raises (Standing or Seated)",
-                "Step-Ups",
-                "Glute Bridges/Hip Thrusts (Barbell or Bodyweight)",
-                "Goblet Squats"
+                "Barbell Squats (High Bar & Low Bar)", "Leg Press", "Romanian Deadlifts (RDLs)",
+                "Walking Lunges", "Leg Extensions", "Hamstring Curls (Lying or Seated)",
+                "Calf Raises (Standing or Seated)", "Step-Ups",
+                "Glute Bridges/Hip Thrusts (Barbell or Bodyweight)", "Goblet Squats"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                legsExercises
+                this, android.R.layout.simple_list_item_1, legsExercises
         );
-
         listViewLegs.setAdapter(adapter);
 
-        // Set click listener for ListView items
         listViewLegs.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -79,10 +77,9 @@ public class LegsActivity extends AppCompatActivity {
 
     private void displayExerciseDescription(String exerciseName) {
         String description = exerciseDescriptions.get(exerciseName);
-        if (description != null) {
-            descriptionTextView.setText(description);
-        } else {
-            descriptionTextView.setText("Description not available for this exercise.");
-        }
+        descriptionTextView.setText(description != null ? description : "Description not available for this exercise.");
     }
 }
+
+
+
