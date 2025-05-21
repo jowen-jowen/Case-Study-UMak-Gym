@@ -181,29 +181,18 @@ public class SessionBookingActivity extends AppCompatActivity {
                         Calendar selected = dateViewsMap.get(view);
                         TextView selectedView = (TextView) view;
 
-                        boolean alreadySelected = false;
-                        for (Calendar c : selectedDates) {
-                            if (c.get(Calendar.YEAR) == selected.get(Calendar.YEAR)
-                                    && c.get(Calendar.MONTH) == selected.get(Calendar.MONTH)
-                                    && c.get(Calendar.DAY_OF_MONTH) == selected.get(Calendar.DAY_OF_MONTH)) {
-                                alreadySelected = true;
-                                break;
-                            }
+                        for (Map.Entry<TextView, Calendar> entry : dateViewsMap.entrySet()) {
+                            TextView otherDayView = entry.getKey();
+                            if (!otherDayView.isEnabled()) continue;
+                            otherDayView.setBackgroundResource(R.drawable.calendar_cell_border);
+                            otherDayView.setTextColor(Color.BLACK);
                         }
 
-                        if (alreadySelected) {
-                            selectedDates.removeIf(c -> c.get(Calendar.YEAR) == selected.get(Calendar.YEAR)
-                                    && c.get(Calendar.MONTH) == selected.get(Calendar.MONTH)
-                                    && c.get(Calendar.DAY_OF_MONTH) == selected.get(Calendar.DAY_OF_MONTH));
-                            selectedView.setBackgroundResource(R.drawable.calendar_cell_border);
-                            selectedView.setTextColor(Color.BLACK);
-                        } else if (selectedDates.size() < 5) {
-                            selectedDates.add(selected);
-                            selectedView.setBackgroundColor(Color.parseColor("#6200EE"));
-                            selectedView.setTextColor(Color.WHITE);
-                        } else {
-                            Toast.makeText(this, "You can only select up to 5 dates.", Toast.LENGTH_SHORT).show();
-                        }
+                        selectedDates.clear();
+                        selectedDates.add(selected);
+
+                        selectedView.setBackgroundColor(Color.parseColor("#6200EE"));
+                        selectedView.setTextColor(Color.WHITE);
                     });
                 }
 
