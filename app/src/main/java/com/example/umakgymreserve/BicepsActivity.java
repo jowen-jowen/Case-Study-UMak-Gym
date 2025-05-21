@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ImageView;
 import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
@@ -14,70 +15,72 @@ public class BicepsActivity extends AppCompatActivity {
 
     ListView listViewBiceps;
     TextView descriptionTextView;
+    ImageView exerciseImageView;
     private HashMap<String, String> exerciseDescriptions;
+    private HashMap<String, Integer> exerciseImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biceps);
 
+        // Initialize views
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
-        Button backButton = findViewById(R.id.btn3); // BACK button
+        exerciseImageView = findViewById(R.id.imageView13);
+        Button backButton = findViewById(R.id.btn3);
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Go back to previous screen
-            }
-        });
+        // Setup back button
+        backButton.setOnClickListener(v -> finish());
 
-        exerciseDescriptions = new HashMap<>();
-        exerciseDescriptions.put("Barbell Bicep Curls",
-                "Classic bicep builder. Keep elbows pinned to sides, curl weight up while squeezing biceps. Avoid swinging.");
-        exerciseDescriptions.put("Dumbbell Bicep Curls",
-                "Allows individual arm focus. Can do alternating or simultaneous curls. Rotate palms up during curl.");
-        exerciseDescriptions.put("Hammer Curls",
-                "Targets brachialis and brachioradialis. Keep palms facing inward throughout movement.");
-        exerciseDescriptions.put("Concentration Curls",
-                "Isolates the biceps effectively. Sit with elbow braced against inner thigh, focus on slow contraction.");
-        exerciseDescriptions.put("Incline Dumbbell Curls",
-                "Provides full stretch at bottom. Lie back on incline bench (45°), maintain control throughout.");
-        exerciseDescriptions.put("Preacher Curls",
-                "Eliminates cheating. Pad isolates biceps by preventing shoulder involvement. Control negative phase.");
-        exerciseDescriptions.put("Cable Bicep Curls",
-                "Provides constant tension. Use straight bar or rope attachment. Keep elbows stationary.");
-        exerciseDescriptions.put("Reverse Curls",
-                "Works brachioradialis. Use overhand grip, focus on controlled movement with lighter weight.");
-        exerciseDescriptions.put("Chin-Ups (Close Grip, Palms Facing You)",
-                "Compound bicep builder. Pull chest to bar while keeping core tight. Excellent for functional strength.");
-        exerciseDescriptions.put("Zottman Curls",
-                "Combines regular and reverse curl. Rotate palms down during lowering phase for complete forearm work.");
+        // Initialize exercise data
+        initializeExerciseData();
 
-        String[] bicepsExercises = {
-                "Barbell Bicep Curls", "Dumbbell Bicep Curls", "Hammer Curls", "Concentration Curls",
-                "Incline Dumbbell Curls", "Preacher Curls", "Cable Bicep Curls", "Reverse Curls",
-                "Chin-Ups (Close Grip, Palms Facing You)", "Zottman Curls"
-        };
-
+        // Create and set adapter
+        String[] bicepsExercises = exerciseDescriptions.keySet().toArray(new String[0]);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, bicepsExercises
+                this,
+                android.R.layout.simple_list_item_1,
+                bicepsExercises
         );
         listViewBiceps.setAdapter(adapter);
 
-        listViewBiceps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String selectedExercise = (String) parent.getItemAtPosition(position);
-                displayExerciseDescription(selectedExercise);
-            }
+        // Set item click listener
+        listViewBiceps.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedExercise = (String) parent.getItemAtPosition(position);
+            displayExerciseDetails(selectedExercise);
         });
     }
 
-    private void displayExerciseDescription(String exerciseName) {
+    private void initializeExerciseData() {
+        exerciseDescriptions = new HashMap<>();
+        exerciseImages = new HashMap<>();
+
+        // Basic exercises from first version
+        exerciseDescriptions.put("Bicep Curls", "Bicep Curls target the short head of the biceps.");
+        exerciseDescriptions.put("Hammer Curls", "Hammer Curls focus on the brachialis muscle.");
+        exerciseDescriptions.put("Concentration Curls", "Concentration Curls isolate the biceps for strength.");
+        exerciseDescriptions.put("Preacher Curls", "Preacher Curls prevent cheating and increase isolation.");
+
+
+        exerciseImages.put("Bicep Curls", R.drawable.bicep_curls);
+        exerciseImages.put("Hammer Curls", R.drawable.hammer_curls);
+        exerciseImages.put("Concentration Curls", R.drawable.concentration_curls);
+        exerciseImages.put("Preacher Curls", R.drawable.preacher_curls);
+
+    }
+
+    private void displayExerciseDetails(String exerciseName) {
+        // Set description
         String description = exerciseDescriptions.get(exerciseName);
         descriptionTextView.setText(description != null ? description : "Description not available for this exercise.");
+
+        // Set image if available
+        Integer imageRes = exerciseImages.get(exerciseName);
+        if (imageRes != null) {
+            exerciseImageView.setImageResource(imageRes);
+        } else {
+            exerciseImageView.setImageResource(R.drawable.default_exercise); // Set a default image
+        }
     }
 }
-
-
