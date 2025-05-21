@@ -50,20 +50,20 @@
 
         <ImageView
             android:id="@+id/imageView9"
-            android:layout_width="139dp"
-            android:layout_height="124dp"
-            android:layout_marginStart="53dp"
-            android:layout_marginTop="25dp"
+            android:layout_width="158dp"
+            android:layout_height="157dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="28dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:srcCompat="@drawable/chest" />
 
         <ImageView
             android:id="@+id/imageView10"
-            android:layout_width="160dp"
+            android:layout_width="159dp"
             android:layout_height="154dp"
-            android:layout_marginStart="27dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:srcCompat="@drawable/biceps" />
@@ -72,28 +72,27 @@
             android:id="@+id/btnchest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="92dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="76dp"
             android:text="CHEST"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+            tools:layout_editor_absoluteY="265dp" />
 
         <Button
             android:id="@+id/btnbiceps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="59dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="64dp"
             android:text="BICEPS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="175dp"
-            android:layout_height="226dp"
-            android:layout_marginStart="41dp"
-            android:layout_marginBottom="10dp"
+            android:layout_width="154dp"
+            android:layout_height="193dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toTopOf="@+id/btnback"
             app:layout_constraintStart_toEndOf="@+id/imageView12"
             app:srcCompat="@drawable/back" />
@@ -102,18 +101,18 @@
             android:id="@+id/btnlegs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="78dp"
-            android:layout_marginTop="14dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="16dp"
             android:text="LEGS"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
         <ImageView
             android:id="@+id/imageView12"
-            android:layout_width="150dp"
-            android:layout_height="179dp"
-            android:layout_marginStart="53dp"
-            android:layout_marginTop="43dp"
+            android:layout_width="149dp"
+            android:layout_height="198dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnchest"
             app:srcCompat="@drawable/legs" />
@@ -122,8 +121,8 @@
             android:id="@+id/btnback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="98dp"
-            android:layout_marginBottom="84dp"
+            android:layout_marginStart="76dp"
+            android:layout_marginBottom="48dp"
             android:text="Button"
             app:layout_constraintBottom_toTopOf="@+id/btnBackHomeWorkout"
             app:layout_constraintStart_toEndOf="@+id/btnlegs" />
