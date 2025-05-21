@@ -63,7 +63,11 @@
         </activity>
 
 
+        <activity android:name=".SessionBookingActivity" />
         <activity android:name=".WorkoutsActivity" />
+        <activity android:name=".ContactUsActivity" />
+        <activity android:name=".AnnouncementActivity" />
+
         <activity android:name=".ChestActivity" />
         <activity android:name=".BicepsActivity" />
         <activity android:name=".BackActivity" />

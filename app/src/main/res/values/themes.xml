@@ -3,6 +3,7 @@
     <style name="Base.Theme.UmakGymReserve" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your light theme here -->
         <item name="materialCalendarTheme">@style/ThemeOverlay.MaterialComponents.MaterialCalendar</item>
+
     </style>
 
     <style name="Theme.UmakGymReserve" parent="Base.Theme.UmakGymReserve" />

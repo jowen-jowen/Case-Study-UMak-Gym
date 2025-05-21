@@ -20,13 +20,18 @@ public class ReservationPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reservation_page);
+
+
+        CardView workoutsCard = findViewById(R.id.cView1);
+        CardView announcementCard = findViewById(R.id.cView2);
+        CardView contactUsCard = findViewById(R.id.cView3);
         CardView sessionBookingCard = findViewById(R.id.cView4);
-        
+
         firstName = findViewById(R.id.fetchFirstName);
 
         String firstNameExport = getIntent().getStringExtra("firstName");
         firstName.setText(String.format("WELCOME %s!", firstNameExport).toUpperCase());
-        
+
         sessionBookingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +43,6 @@ public class ReservationPage extends AppCompatActivity {
         });
 
         // Workouts
-        CardView workoutsCard = findViewById(R.id.cView1);
         workoutsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +54,6 @@ public class ReservationPage extends AppCompatActivity {
         });
 
         // Contact Us
-        CardView contactUsCard = findViewById(R.id.cView3);
         contactUsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,7 +65,6 @@ public class ReservationPage extends AppCompatActivity {
         });
 
         // Announcement
-        CardView announcementCard = findViewById(R.id.cView2);
         announcementCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
