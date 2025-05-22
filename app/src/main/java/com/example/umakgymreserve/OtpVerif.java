@@ -69,6 +69,7 @@ public class OtpVerif extends AppCompatActivity {
                                     otp = object.getString("otp").trim();
                                     Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
                                     sendOtp.setText("OTP Sent");
+                                    typeOtp.setFocusable(true);
                                 } else {
                                     String message = object.getString("message");
                                     Toast.makeText(OtpVerif.this, "Error: " + message, Toast.LENGTH_SHORT).show();
