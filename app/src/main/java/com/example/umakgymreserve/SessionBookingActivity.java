@@ -37,6 +37,7 @@ public class SessionBookingActivity extends AppCompatActivity {
         btnProceed = findViewById(R.id.btnProceed);
 
         String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
 
         generateCalendar();
 
@@ -67,6 +68,7 @@ public class SessionBookingActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
             intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
             finish();
         });

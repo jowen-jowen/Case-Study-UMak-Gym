@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -29,6 +30,11 @@ public class BackActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent();
+                String firstNameExport = getIntent().getStringExtra("firstName");
+                String registerExport = getIntent().getStringExtra("typeRegister");
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 finish();
             }
         });
