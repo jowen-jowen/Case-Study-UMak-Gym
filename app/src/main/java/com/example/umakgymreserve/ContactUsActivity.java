@@ -17,7 +17,9 @@ public class ContactUsActivity extends AppCompatActivity {
         btnHome.setOnClickListener(v -> {
             Intent intent = new Intent(ContactUsActivity.this, ReservationPage.class);
             String firstNameExport = getIntent().getStringExtra("firstName");
+            String registerExport = getIntent().getStringExtra("typeRegister");
             intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
             finish();
         });

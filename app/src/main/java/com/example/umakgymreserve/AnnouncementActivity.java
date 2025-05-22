@@ -17,7 +17,9 @@ public class AnnouncementActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
             String firstNameExport = getIntent().getStringExtra("firstName");
+            String registerExport = getIntent().getStringExtra("typeRegister");
             intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
             finish();
         });

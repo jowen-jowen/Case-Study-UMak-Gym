@@ -21,6 +21,8 @@ public class WorkoutsActivity extends AppCompatActivity {
 
         // Set click listeners
         setupButtonClickListeners();
+
+
     }
 
     private void initializeViews() {
@@ -28,7 +30,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         btnBiceps = findViewById(R.id.btnbiceps);
         btnLegs = findViewById(R.id.btnlegs);
         btnBack = findViewById(R.id.btnback);
-        btnBackToMain = findViewById(R.id.btnBackToMain);
+        btnBackToMain = findViewById(R.id.btnBackHomeWorkout);
     }
 
     private void setupButtonClickListeners() {
@@ -36,12 +38,15 @@ public class WorkoutsActivity extends AppCompatActivity {
         btnBiceps.setOnClickListener(view -> navigateToActivity(BicepsActivity.class));
         btnLegs.setOnClickListener(view -> navigateToActivity(LegsActivity.class));
         btnBack.setOnClickListener(view -> navigateToActivity(BackActivity.class));
-        btnBackToMain.setOnClickListener(view -> navigateToActivity(MainActivity.class));
+        btnBackToMain.setOnClickListener(view -> navigateToActivity(ReservationPage.class));
     }
 
     private void navigateToActivity(Class<?> activityClass) {
         Intent intent = new Intent(WorkoutsActivity.this, activityClass);
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+        intent.putExtra("firstName", firstNameExport);
+        intent.putExtra("typeRegister", registerExport);
         startActivity(intent);
-
     }
 }

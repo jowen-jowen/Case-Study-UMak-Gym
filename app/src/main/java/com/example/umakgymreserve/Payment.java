@@ -38,8 +38,12 @@ public class Payment extends AppCompatActivity {
 
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, ReservationPage.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            String registerExport = getIntent().getStringExtra("typeRegister");
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
-            finish(); // optional: finishes current activity so it doesn't stay in back stack
+            finish();
         });
     }
 

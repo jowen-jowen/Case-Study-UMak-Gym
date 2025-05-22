@@ -21,7 +21,6 @@ public class ReservationPage extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reservation_page);
 
-
         CardView workoutsCard = findViewById(R.id.cView1);
         CardView announcementCard = findViewById(R.id.cView2);
         CardView contactUsCard = findViewById(R.id.cView3);
@@ -30,6 +29,7 @@ public class ReservationPage extends AppCompatActivity {
         firstName = findViewById(R.id.fetchFirstName);
 
         String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
         firstName.setText(String.format("WELCOME %s!", firstNameExport).toUpperCase());
 
         sessionBookingCard.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +37,7 @@ public class ReservationPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReservationPage.this, SessionBookingActivity.class);
                 intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 startActivity(intent);
                 finish();
             }
@@ -48,6 +49,7 @@ public class ReservationPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReservationPage.this, WorkoutsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 startActivity(intent);
                 finish();
             }
@@ -59,6 +61,7 @@ public class ReservationPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReservationPage.this, ContactUsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 startActivity(intent);
                 finish();
             }
@@ -70,6 +73,7 @@ public class ReservationPage extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReservationPage.this, AnnouncementActivity.class);
                 intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 startActivity(intent);
                 finish();
             }

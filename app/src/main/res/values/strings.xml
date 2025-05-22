@@ -22,7 +22,7 @@
     <string name="price_employee_results">THE PRICE OF THE RESERVE WILL BE: 20 PHP</string>
     <string name="price_alumni_results">THE PRICE OF THE RESERVE WILL BE: 50 PHP</string>
     <string name="enter_umak_email">ENTER UMAK EMAIL</string>
-    <string name="confirm_button">CONFIRM</string>
+    <string name="confirm_button">NEXT</string>
     <string name="to_send_otp_verification_to">TO SEND OTP VERIFICATION TO</string>
     <string name="otp_verification">OTP VERIFICATION</string>
     <string name="umak_email"><![CDATA[<umak-email>]]></string>

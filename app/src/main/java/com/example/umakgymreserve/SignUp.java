@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -20,10 +21,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class SignUp extends AppCompatActivity {
     RadioGroup rdGroupType;
-    EditText first, last, email;
+    EditText first, last;
     RadioButton stud, emp, alum;
     TextView price;
-    Button confirm;
+    Button next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,45 +43,45 @@ public class SignUp extends AppCompatActivity {
         emp = findViewById(R.id.rdEmployee);
         alum = findViewById(R.id.rdAlumni);
         price = findViewById(R.id.tvPrice);
-        email = findViewById(R.id.etUmakEmail);
-        confirm = findViewById(R.id.btnBackHomePayment);
+        next = findViewById(R.id.btnNext);
 
         stud.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         emp.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
         alum.setButtonTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.radio_button_color)));
-        confirm.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
-        confirm.setBackgroundResource(R.drawable.rounded_border_trans);
+        next.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
+        next.setBackgroundResource(R.drawable.rounded_border_trans);
+
+        price.setVisibility(View.GONE);
 
         setPrice();
         confirmationData();
     }
 
     public void setPrice() {
-        rdGroupType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.rdStudent) {
-                    price.setText(R.string.stud_price_results);
-                }
-                if (checkedId == R.id.rdEmployee) {
-                    price.setText(R.string.price_employee_results);
-                }
-                if (checkedId == R.id.rdAlumni) {
-                    price.setText(R.string.price_alumni_results);
-                }
+        rdGroupType.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == R.id.rdStudent) {
+                price.setVisibility(View.VISIBLE);
+                price.setText(R.string.stud_price_results);
+            }
+            if (checkedId == R.id.rdEmployee) {
+                price.setVisibility(View.VISIBLE);
+                price.setText(R.string.price_employee_results);
+            }
+            if (checkedId == R.id.rdAlumni) {
+                price.setVisibility(View.VISIBLE);
+                price.setText(R.string.price_alumni_results);
             }
         });
     }
 
     public void confirmationData() {
-        confirm.setOnClickListener(v -> {
+        next.setOnClickListener(v -> {
             String firstNameValidator = "^[A-Za-z]+([-'\\s]?[A-Za-z]+)*$";
             String lastNameValidator = "^[A-Za-z]+([-'\\s]?[A-Za-z]+)*$";
-            String umakEmailValidator = "^[a-zA-Z]+\\.[a|k][0-9]{8,10}@(umak\\.edu\\.ph)$";
 
             String firstName = first.getText().toString().trim();
             String lastName = last.getText().toString().trim();
-            String umakEmail = email.getText().toString().trim();
+
 
             //for radiogroup
             int selectedId = rdGroupType.getCheckedRadioButtonId();
@@ -93,16 +94,11 @@ public class SignUp extends AppCompatActivity {
 
             if (firstName.matches(firstNameValidator)) {
                 if (lastName.matches(lastNameValidator)) {
-                    if (umakEmail.matches(umakEmailValidator)) {
                         Intent intent = new Intent(this, OtpVerif.class);
                         intent.putExtra("firstName", firstName);
                         intent.putExtra("lastName", lastName);
-                        intent.putExtra("myEmail", umakEmail);
                         intent.putExtra("typeRegister", typeRegister);
                         startActivity(intent);
-                    } else {
-                        email.setError("Invalid UMAK ACCOUNT");
-                    }
                 } else if (lastName.isEmpty()) {
                     last.setError("Last Name is empty");
                 } else {
