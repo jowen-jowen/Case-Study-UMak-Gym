@@ -22,19 +22,19 @@ public class ChestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chest);
 
-        // Initialize views
+
         listViewChest = findViewById(R.id.listViewChest);
         descriptionTextView = findViewById(R.id.descriptionChestTextView);
         exerciseImageView = findViewById(R.id.imageView13);
         Button backButton = findViewById(R.id.btn4);
 
-        // Setup back button
+
         backButton.setOnClickListener(v -> finish());
 
-        // Initialize exercise data
+
         initializeExerciseData();
 
-        // Create and set adapter
+
         String[] chestExercises = exerciseDescriptions.keySet().toArray(new String[0]);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this,

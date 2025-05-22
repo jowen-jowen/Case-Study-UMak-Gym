@@ -11,47 +11,59 @@
 
     <TextView
         android:id="@+id/tvLegsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="245dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="76dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="Legs Exercises"
         android:textColor="#052865"
-        android:textSize="24sp"
+        android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewLegs"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="203dp"
+        android:layout_height="535dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLegsTitle" />
 
     <TextView
-        android:id="@+id/descriptionTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:id="@+id/descriptionLegsTextView"
+        android:layout_width="150dp"
+        android:layout_height="288dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
+        android:background="#00000000"
         android:padding="16dp"
+        android:text="Select an exercise to view description"
         android:textColor="#052865"
         android:textSize="16sp"
-        android:text="Select an exercise to view description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn4"
+        app:layout_constraintStart_toEndOf="@+id/listViewLegs" />
 
     <Button
-        android:id="@+id/btn5"
+        android:id="@+id/btn4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="41dp"
         android:text="BACK"
-        app:layout_constraintBottom_toTopOf="@+id/listViewLegs"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <ImageView
+        android:id="@+id/imageViewLegs"
+        android:layout_width="154dp"
+        android:layout_height="193dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toEndOf="@+id/listViewLegs"
+        app:layout_constraintTop_toBottomOf="@+id/tvLegsTitle"
+        app:srcCompat="@drawable/default_exercise2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
