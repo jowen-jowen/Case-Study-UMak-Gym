@@ -27,7 +27,7 @@ public class BicepsActivity extends AppCompatActivity {
         // Initialize views
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
-        exerciseImageView = findViewById(R.id.imageView13);
+        exerciseImageView = findViewById(R.id.imageView14);
         Button backButton = findViewById(R.id.btn3);
 
         // Setup back button
