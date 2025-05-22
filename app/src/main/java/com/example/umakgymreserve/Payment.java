@@ -1,6 +1,7 @@
 package com.example.umakgymreserve;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -22,6 +23,7 @@ public class Payment extends AppCompatActivity {
 
     private WebView browser;
     private Button btnStartPayment, btnBackHome;
+    String phpUrl = "http://10.0.2.2/LogReg/payment.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +51,32 @@ public class Payment extends AppCompatActivity {
 
     private void initializeWebView() {
         browser.getSettings().setJavaScriptEnabled(true);
-        browser.setWebViewClient(new WebViewClient());
+        browser.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.contains("success.php")) {
+                    Uri uri = Uri.parse(url);
+                    String reference = uri.getQueryParameter("reference");
+                    String email = uri.getQueryParameter("email");
+                    String contact = uri.getQueryParameter("contact");
+                    String name = uri.getQueryParameter("name");
+
+                    Intent intent = new Intent(Payment.this, PaymentSuccess.class);
+                    intent.putExtra("reference", reference);
+                    intent.putExtra("email", email);
+                    intent.putExtra("contact", contact);
+                    intent.putExtra("name", name);
+                    startActivity(intent);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
+
     private void createPaymentLink() {
-        String phpUrl = "http://10.0.2.2/LogReg/payment.php";
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -64,6 +87,7 @@ public class Payment extends AppCompatActivity {
                         JSONObject data = jsonObject.getJSONObject("data");
                         JSONObject attributes = data.getJSONObject("attributes");
                         String checkoutUrl = attributes.getString("checkout_url");
+                        String reference =jsonObject.getString("reference");
 
                         // Show WebView and load the checkout link
                         browser.setVisibility(View.VISIBLE);
