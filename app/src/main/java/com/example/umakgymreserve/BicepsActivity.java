@@ -28,7 +28,7 @@ public class BicepsActivity extends AppCompatActivity {
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         exerciseImageView = findViewById(R.id.imageView14);
-        Button backButton = findViewById(R.id.btn3);
+        Button backButton = findViewById(R.id.btn1);
 
         // Setup back button
         backButton.setOnClickListener(v -> finish());
@@ -56,17 +56,28 @@ public class BicepsActivity extends AppCompatActivity {
         exerciseDescriptions = new HashMap<>();
         exerciseImages = new HashMap<>();
 
-        // Basic exercises from first version
+        // exercises with their descriptions
         exerciseDescriptions.put("Bicep Curls", "Bicep Curls target the short head of the biceps.");
         exerciseDescriptions.put("Hammer Curls", "Hammer Curls focus on the brachialis muscle.");
         exerciseDescriptions.put("Concentration Curls", "Concentration Curls isolate the biceps for strength.");
         exerciseDescriptions.put("Preacher Curls", "Preacher Curls prevent cheating and increase isolation.");
+        exerciseDescriptions.put("Incline Dumbbell Curls", "Incline Dumbbell Curls allow for a greater stretch of the biceps.");
+        exerciseDescriptions.put("Cable Curls", "Cable Curls provide constant tension for better pump.");
+        exerciseDescriptions.put("Zottman Curls", "Zottman Curls target both biceps and forearms.");
+        exerciseDescriptions.put("Barbell Curls", "Barbell Curls are great for overall biceps mass.");
+        exerciseDescriptions.put("Chin-Ups", "Chin-Ups engage both the biceps and back muscles.");
+
 
 
         exerciseImages.put("Bicep Curls", R.drawable.bicep_curls);
         exerciseImages.put("Hammer Curls", R.drawable.hammer_curls);
         exerciseImages.put("Concentration Curls", R.drawable.concentration_curls);
         exerciseImages.put("Preacher Curls", R.drawable.preacher_curls);
+        exerciseImages.put("Incline Dumbbell Curls", R.drawable.incline_dumbbell);
+        exerciseImages.put("Cable Curls", R.drawable.cable_curls);
+        exerciseImages.put("Zottman Curls", R.drawable.zottman_curls);
+        exerciseImages.put("Barbell Curls", R.drawable.barbell_curls);
+        exerciseImages.put("Chin-Ups", R.drawable.chin_ups);
 
     }
 
@@ -80,7 +91,7 @@ public class BicepsActivity extends AppCompatActivity {
         if (imageRes != null) {
             exerciseImageView.setImageResource(imageRes);
         } else {
-            exerciseImageView.setImageResource(R.drawable.default_exercise); // Set a default image
+            exerciseImageView.setImageResource(R.drawable.default_exercise);
         }
     }
 }

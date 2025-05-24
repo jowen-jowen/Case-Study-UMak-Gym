@@ -25,7 +25,7 @@ public class BackActivity extends AppCompatActivity {
         listViewBack = findViewById(R.id.listViewBack);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         exerciseImageView = findViewById(R.id.imageViewBack); // Add this ImageView in activity_back.xml
-        Button backButton = findViewById(R.id.btn1);
+        Button backButton = findViewById(R.id.btn3);
 
         backButton.setOnClickListener(v -> finish());
 
@@ -49,16 +49,16 @@ public class BackActivity extends AppCompatActivity {
         exerciseDescriptions = new HashMap<>();
         exerciseImages = new HashMap<>();
 
-        exerciseDescriptions.put("Pull-Ups (Various Grips)", "Pull-Ups target your lats, traps, and biceps. Use different grips to emphasize different muscles.");
-        exerciseDescriptions.put("Barbell Rows (Bent-Over Rows)", "Strengthens the middle back and posterior chain. Keep your back straight at about 45 degrees.");
-        exerciseDescriptions.put("Dumbbell Rows (Single-Arm Rows)", "Great for isolating one side of your back. Helps correct muscle imbalances.");
-        exerciseDescriptions.put("Seated Cable Rows", "Targets the middle back with constant tension. Focus on squeezing your shoulder blades together.");
-        exerciseDescriptions.put("Lat Pulldowns (Various Grips)", "Works the latissimus dorsi. Wider grips target the outer lats, closer grips work the inner lats.");
-        exerciseDescriptions.put("Face Pulls", "Excellent for rear delts and upper back. Helps improve posture and shoulder health.");
-        exerciseDescriptions.put("Deadlifts", "Full-body exercise that heavily works the lower back. Maintain proper form to avoid injury.");
-        exerciseDescriptions.put("Back Extensions (Hyperextensions)", "Targets the erector spinae. Can be done with or without additional weight.");
-        exerciseDescriptions.put("T-Bar Rows", "Compound movement for thickness in the middle back. Keep your chest up throughout the movement.");
-        exerciseDescriptions.put("Shrugs (Barbell or Dumbbell)", "Focuses on the trapezius muscles. Lift with your shoulders, not your arms.");
+        exerciseDescriptions.put("Pull-Ups (Various Grips)", "Hang from a pull-up bar with your chosen grip, pull your chest toward the bar by engaging your back and biceps, then lower yourself with control until your arms are fully extended.");
+        exerciseDescriptions.put("Barbell Rows (Bent-Over Rows)", "Grip the barbell with both hands, bend your torso forward at about a 45-degree angle with your back flat, then pull the bar toward your lower chest while squeezing your shoulder blades together.");
+        exerciseDescriptions.put("Dumbbell Rows (Single-Arm Rows)", "Place one knee and hand on a bench for support, hold a dumbbell in the other hand, pull it toward your waist while keeping your elbow close to your body, then lower it slowly.");
+        exerciseDescriptions.put("Seated Cable Rows", "Sit on the bench with your feet on the platform, grab the cable handle, pull it toward your torso while keeping your back straight and squeezing your shoulder blades together, then return to the start.");
+        exerciseDescriptions.put("Lat Pulldowns (Various Grips)", "Sit at the lat pulldown machine, grip the bar with your desired hand placement, pull it down to your upper chest while leaning slightly back, then return slowly with control.");
+        exerciseDescriptions.put("Face Pulls", "Attach a rope to a high pulley, grip both ends with palms facing inward, pull the rope toward your face while keeping your elbows high, then return slowly to the starting position.");
+        exerciseDescriptions.put("Deadlifts", "Stand with your feet hip-width apart and grip the bar just outside your knees, keep your back straight, lift the bar by extending your hips and knees simultaneously, then lower it in a controlled motion.");
+        exerciseDescriptions.put("Back Extensions (Hyperextensions)", "Position yourself on a back extension bench with your hips at the edge, lower your upper body toward the ground, then contract your lower back muscles to raise your torso in line with your legs.");
+        exerciseDescriptions.put("T-Bar Rows", "Stand over the T-bar row machine, grip the handles, bend at the hips with a flat back, pull the bar toward your chest by squeezing your shoulder blades, and slowly lower it.");
+        exerciseDescriptions.put("Shrugs (Barbell or Dumbbell)", "Hold a barbell or dumbbells at your sides, lift your shoulders straight up toward your ears, pause at the top, then lower them back down under control.");
 
         exerciseImages.put("Pull-Ups (Various Grips)", R.drawable.pull_ups);
         exerciseImages.put("Barbell Rows (Bent-Over Rows)", R.drawable.barbell_rows);

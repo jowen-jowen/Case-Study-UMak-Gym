@@ -7,17 +7,20 @@
     android:layout_height="match_parent"
     android:background="#F5D328"
     android:padding="16dp"
-    tools:context=".ChestActivity"> <TextView
-    android:id="@+id/tvChestTitle"
-    android:layout_width="274dp"
-    android:layout_height="71dp"
-    android:layout_marginStart="52dp"
-    android:layout_marginTop="24dp"
-    android:fontFamily="@font/roboto_bold"
-    android:text="Chest Exercises" android:textColor="#052865"
-    android:textSize="35sp"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".ChestActivity">
+
+    <TextView
+        android:id="@+id/tvChestTitle"
+        android:layout_width="274dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Chest Exercises"
+        android:textColor="#052865"
+        android:textSize="35sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewChest"
