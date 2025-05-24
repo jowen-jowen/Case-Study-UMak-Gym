@@ -78,36 +78,37 @@ public class SignUp extends AppCompatActivity {
         next.setOnClickListener(v -> {
             String firstNameValidator = "^[A-Za-z]+([-'\\s]?[A-Za-z]+)*$";
             String lastNameValidator = "^[A-Za-z]+([-'\\s]?[A-Za-z]+)*$";
-
             String firstName = first.getText().toString().trim();
             String lastName = last.getText().toString().trim();
+            String injectionPattern = ".*[\"';=<>%*(){}\\[\\]--].*";
 
 
             //for radiogroup
             int selectedId = rdGroupType.getCheckedRadioButtonId();
             if (selectedId == -1) {
                 Toast.makeText(this, "Please select a registration type.", Toast.LENGTH_SHORT).show();
-                return;
             }
+
             RadioButton selectedRdButton = findViewById(selectedId);
             String typeRegister = selectedRdButton.getText().toString();
-
+            String umakEmail = getIntent().getStringExtra("myEmail");
             if (firstName.matches(firstNameValidator)) {
                 if (lastName.matches(lastNameValidator)) {
-                        Intent intent = new Intent(this, OtpVerif.class);
+                        Intent intent = new Intent(this, CreateAccount.class);
                         intent.putExtra("firstName", firstName);
                         intent.putExtra("lastName", lastName);
                         intent.putExtra("typeRegister", typeRegister);
+                        intent.putExtra("myEmail", umakEmail);
                         startActivity(intent);
                 } else if (lastName.isEmpty()) {
                     last.setError("Last Name is empty");
-                } else {
-                    last.setError("Invalid Last Name");
+                } else if (lastName.matches(injectionPattern)){
+                    last.setError("Invalid Last Name or Contains Unsafe Characters");
                 }
             } else if (firstName.isEmpty()) {
                 first.setError("First Name is empty");
-            } else {
-                first.setError("Invalid First Name");
+            } else if (firstName.matches(injectionPattern)) {
+                first.setError("Invalid First Name or Contains Unsafe Characters");
             }
         });
     }

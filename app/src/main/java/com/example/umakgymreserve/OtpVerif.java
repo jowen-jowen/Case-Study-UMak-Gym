@@ -30,6 +30,7 @@ public class OtpVerif extends AppCompatActivity {
     EditText typeOtp, email;
     String otp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,17 +48,23 @@ public class OtpVerif extends AppCompatActivity {
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
 
 
+
         String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
 
+
         sendOtp.setOnClickListener(v -> {
-            String umakEmailValidator = "^[a-zA-Z]+\\.[a|k][0-9]{8,10}@(umak\\.edu\\.ph)$";
             String umakEmail = email.getText().toString().trim();
+            String umakEmailValidator = "^[a-zA-Z0-9._%+-]+@umak\\.edu\\.ph$";
+            String injectionPattern = ".*[\"';=<>%*(){}\\[\\]--].*";
+
+            if(umakEmail.isEmpty()){
+                email.setError("Please input your University Email Account");
+            }
 
             if (umakEmail.matches(umakEmailValidator)) {
                 sendOtp.setEnabled(false);
                 sendOtp.setClickable(false);
                 sendOtp.setText("Sending...");
-
                 Log.d("OtpVerif", "Send OTP clicked");
 
                 StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
@@ -115,28 +122,20 @@ public class OtpVerif extends AppCompatActivity {
                 RequestQueue queue = Volley.newRequestQueue(this);
                 queue.add(stringRequest);
 
+            } else if (umakEmail.matches(injectionPattern)){
+                Toast.makeText(this, "Invalid UMak Email or Contains Unsafe Characters", Toast.LENGTH_SHORT).show();
             }
         });
 
-
-        otpConfirmation();
-    }
-
-    private void otpConfirmation() {
         confirmOtp.setOnClickListener(v -> {
             String enteredOtp = typeOtp.getText().toString().trim();
-
+            String umakEmail = email.getText().toString().trim();
             Intent fetchData = getIntent();
-            String firstName = fetchData.getStringExtra("firstName");
-            String lastName = fetchData.getStringExtra("lastName");
-            String umakEmail = fetchData.getStringExtra("myEmail");
             String typeRegister = fetchData.getStringExtra("typeRegister");
 
             if (enteredOtp.equals(otp)) {
                 Toast.makeText(getApplicationContext(), "OTP MATCHES", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, CreateAccount.class);
-                intent.putExtra("firstName", firstName);
-                intent.putExtra("lastName", lastName);
+                Intent intent = new Intent(this, SignUp.class);
                 intent.putExtra("myEmail", umakEmail);
                 intent.putExtra("typeRegister", typeRegister);
                 startActivity(intent);
