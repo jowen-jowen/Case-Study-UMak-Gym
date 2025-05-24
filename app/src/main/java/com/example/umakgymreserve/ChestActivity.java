@@ -26,7 +26,7 @@ public class ChestActivity extends AppCompatActivity {
         listViewChest = findViewById(R.id.listViewChest);
         descriptionTextView = findViewById(R.id.descriptionChestTextView);
         exerciseImageView = findViewById(R.id.imageView13);
-        Button backButton = findViewById(R.id.btn4);
+        Button backButton = findViewById(R.id.btn2);
 
 
         backButton.setOnClickListener(v -> finish());
@@ -85,7 +85,7 @@ public class ChestActivity extends AppCompatActivity {
         if (imageRes != null) {
             exerciseImageView.setImageResource(imageRes);
         } else {
-            exerciseImageView.setImageResource(R.drawable.default_exercise); // Set a default image
+            exerciseImageView.setImageResource(R.drawable.default_exercise1); // Set a default image
         }
     }
 }
