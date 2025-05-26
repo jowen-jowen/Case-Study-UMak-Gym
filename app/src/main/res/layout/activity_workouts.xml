@@ -1,12 +1,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5D328"
-    tools:layout_editor_absoluteX="-11dp"
-    tools:layout_editor_absoluteY="100dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F5D328">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -74,7 +72,7 @@
             android:id="@+id/btnchest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
+            android:layout_marginStart="92dp"
             android:layout_marginTop="24dp"
             android:text="CHEST"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,51 +82,51 @@
             android:id="@+id/btnbiceps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="59dp"
             android:text="BICEPS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
         <ImageView
             android:id="@+id/imageView11"
-            android:layout_width="187dp"
-            android:layout_height="207dp"
-            android:layout_marginStart="52dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="175dp"
+            android:layout_height="226dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/btnback"
             app:layout_constraintStart_toEndOf="@+id/imageView12"
             app:srcCompat="@drawable/back" />
 
         <Button
-            android:id="@+id/btnback"
+            android:id="@+id/btnlegs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="104dp"
-            android:layout_marginBottom="120dp"
-            android:text="BACK"
-            app:layout_constraintBottom_toTopOf="@+id/btnBackHomeWorkout"
-            app:layout_constraintStart_toEndOf="@+id/btnlegs" />
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="14dp"
+            android:text="LEGS"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
         <ImageView
             android:id="@+id/imageView12"
             android:layout_width="150dp"
             android:layout_height="179dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="112dp"
+            android:layout_marginStart="53dp"
+            android:layout_marginTop="43dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnchest"
             app:srcCompat="@drawable/legs" />
 
         <Button
-            android:id="@+id/btnlegs"
+            android:id="@+id/btnback"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginBottom="120dp"
-            android:text="LEGS"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+            android:layout_marginStart="98dp"
+            android:layout_marginBottom="84dp"
+            android:text="Button"
+            app:layout_constraintBottom_toTopOf="@+id/btnBackHomeWorkout"
+            app:layout_constraintStart_toEndOf="@+id/btnlegs" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

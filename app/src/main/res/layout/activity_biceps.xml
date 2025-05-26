@@ -11,47 +11,59 @@
 
     <TextView
         android:id="@+id/tvBicepsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="274dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_bold"
         android:text="Biceps Exercises"
         android:textColor="#052865"
-        android:textSize="24sp"
+        android:textSize="35sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listViewBiceps"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="203dp"
+        android:layout_height="535dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/descriptionTextView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBicepsTitle" />
 
     <TextView
         android:id="@+id/descriptionTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:layout_width="143dp"
+        android:layout_height="246dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="12dp"
+        android:background="#"
         android:padding="16dp"
+        android:text="Select an exercise to view description"
         android:textColor="#052865"
         android:textSize="16sp"
-        android:text="Select an exercise to view description"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/btn1"
+        app:layout_constraintStart_toEndOf="@+id/listViewBiceps" />
 
     <Button
-        android:id="@+id/btn3"
+        android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="37dp"
+        android:layout_marginBottom="41dp"
         android:text="BACK"
-        app:layout_constraintBottom_toTopOf="@+id/listViewBiceps"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView14"
+        android:layout_width="149dp"
+        android:layout_height="225dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toEndOf="@+id/listViewBiceps"
+        app:layout_constraintTop_toBottomOf="@+id/tvBicepsTitle"
+        app:srcCompat="@drawable/default_exercise" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
