@@ -17,6 +17,9 @@
         android:theme="@style/Theme.UmakGymReserve"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".PaymentFailed"
+            android:exported="false" />
         <!-- Payment Activities -->
         <activity
             android:name=".PaymentSuccess"
