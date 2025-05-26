@@ -54,18 +54,23 @@ public class CreateAccount extends AppCompatActivity {
         confirmAcc.setOnClickListener(v -> {
             String username = createUser.getText().toString().trim();
             String password = createPass.getText().toString().trim();
-            Intent fetchSignUp = getIntent();
-            String receivedEmail = fetchSignUp.getStringExtra("myEmail");
-            String receivedType = fetchSignUp.getStringExtra("typeRegister");
-            String receivedFirstName = fetchSignUp.getStringExtra("firstName");
-            String receivedLastName = fetchSignUp.getStringExtra("lastName");
+            String receivedEmail = getIntent().getStringExtra("myEmail");
+            String receivedType = getIntent().getStringExtra("typeRegister");
+            String receivedFirstName = getIntent().getStringExtra("firstName");
+            String receivedLastName = getIntent().getStringExtra("lastName");
+            String injectionPattern = ".*[\"';=<>%*(){}\\[\\]--].*";
+
 
             if (username.isEmpty()) {
                 createUser.setError("USERNAME IS EMPTY!");
+            } else if (username.matches(injectionPattern)) {
+                createUser.setError("Invalid username or Contains Unsafe Characters");
             }
 
             if (password.isEmpty()) {
                 createPass.setError("PASSWORD IS EMPTY!");
+            } else if (password.matches(injectionPattern)) {
+                createPass.setError("Invalid password or Contains Unsafe Characters");
             }
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,

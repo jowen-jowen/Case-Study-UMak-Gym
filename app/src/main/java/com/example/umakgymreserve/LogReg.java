@@ -100,7 +100,7 @@ public class LogReg extends AppCompatActivity {
         });
 
         signUp.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SignUp.class);
+            Intent intent = new Intent(this, OtpVerif.class);
             startActivity(intent);
             finish();
         });
