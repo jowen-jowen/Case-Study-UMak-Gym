@@ -100,6 +100,7 @@ public class SignUp extends AppCompatActivity {
             int selectedId = rdGroupType.getCheckedRadioButtonId();
             if (selectedId == -1) {
                 Toast.makeText(this, "Please select a registration type.", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             RadioButton selectedRdButton = findViewById(selectedId);
@@ -125,5 +126,4 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
-
 }

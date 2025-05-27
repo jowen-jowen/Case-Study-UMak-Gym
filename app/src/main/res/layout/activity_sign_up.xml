@@ -80,7 +80,6 @@
         android:textColorHint="#A3000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:drawableStart="@drawable/baseline_face_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -98,7 +97,6 @@
         android:textColorHint="#A3000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:drawableStart="@drawable/baseline_face_24"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

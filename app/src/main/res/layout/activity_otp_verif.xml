@@ -105,8 +105,6 @@
         android:textColorHint="#A3000000"
         android:textSize="17sp"
         android:textStyle="bold"
-        android:src="@drawable/baseline_email_24"
-        android:drawableLeft="@drawable/baseline_email_24"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -30,7 +30,7 @@ import java.util.Map;
 public class CreateAccount extends AppCompatActivity {
     Button confirmAcc;
     EditText createUser, createPass;
-    String url = URLs.REGISTER;
+    String url = "http://10.0.2.2/LogReg/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class CreateAccount extends AppCompatActivity {
             String receivedType = getIntent().getStringExtra("typeRegister");
             String receivedFirstName = getIntent().getStringExtra("firstName");
             String receivedLastName = getIntent().getStringExtra("lastName");
-            String injectionPattern = ".*[\"';=<>%*(){}\\[\\]--].*";
+            String injectionPattern = ".*[\"';=<>%*(){}\\[\\]-].*";
 
 
             if (username.isEmpty()) {
@@ -91,7 +91,6 @@ public class CreateAccount extends AppCompatActivity {
                         try {
                             JSONObject obj = new JSONObject(response);
                             String status = obj.getString("status");
-
                             if (status.equals("success")) {
                                 Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(this, LogReg.class);
