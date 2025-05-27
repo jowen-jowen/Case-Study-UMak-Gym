@@ -22,6 +22,12 @@ public class PaymentSuccess extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_success);
 
+
+        String linkId = getIntent().getStringExtra("link_id");
+
+        TextView textView = findViewById(R.id.textViewSuccess);
+        textView.setText("Payment successful!\n Here is your Receipt");
+
         summaryEmail = findViewById(R.id.summaryEmail);
         summaryContact = findViewById(R.id.summaryContact);
         summaryReference = findViewById(R.id.summaryReference);
@@ -41,8 +47,12 @@ public class PaymentSuccess extends AppCompatActivity {
 
 
         btnBackToHome.setOnClickListener(v -> {
-            Intent backIntent = new Intent(PaymentSuccess.this, ReservationPage.class);
-            startActivity(backIntent);
+            Intent intent = new Intent(PaymentSuccess.this, ReservationPage.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            String registerExport = getIntent().getStringExtra("typeRegister");
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            startActivity(intent);
             finish();
         });
     }

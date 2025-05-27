@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -21,14 +19,11 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Payment extends AppCompatActivity {
 
     private WebView browser;
     private Button btnStartPayment, btnBackHome;
-
+    String phpUrl = "http://10.0.2.2/LogReg/payment.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +34,9 @@ public class Payment extends AppCompatActivity {
         btnStartPayment = findViewById(R.id.btnStartPayment);
         btnBackHome = findViewById(R.id.btnBackHome);
 
-        btnStartPayment.setOnClickListener(v -> createPaymentLink());
         initializeWebView();
+
+        btnStartPayment.setOnClickListener(v -> createPaymentLink());
 
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, ReservationPage.class);
@@ -55,12 +51,9 @@ public class Payment extends AppCompatActivity {
 
     private void initializeWebView() {
         browser.getSettings().setJavaScriptEnabled(true);
-
         browser.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                String url = request.getUrl().toString();
-
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 if (url.contains("success.php")) {
                     Uri uri = Uri.parse(url);
                     String reference = uri.getQueryParameter("reference");
@@ -75,48 +68,16 @@ public class Payment extends AppCompatActivity {
                     intent.putExtra("name", name);
                     startActivity(intent);
                     finish();
-
                     return true;
                 }
-
                 return false;
             }
-            
-            @SuppressWarnings("deprecation")
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                return shouldOverrideUrlLoading(view, new WebResourceRequest() {
-                    @Override
-                    public Uri getUrl() {
-                        return Uri.parse(url);
-                    }
-
-                    @Override
-                    public boolean isForMainFrame() { return true; }
-
-                    @Override
-                    public boolean isRedirect() { return false; }
-
-                    @Override
-                    public boolean hasGesture() { return false; }
-
-                    @Override
-                    public String getMethod() { return "GET"; }
-
-                    @Override
-                    public Map<String, String> getRequestHeaders() { return new HashMap<>(); }
-                });
-            }
         });
-
-        browser.setWebChromeClient(new WebChromeClient());
     }
 
 
-
-
     private void createPaymentLink() {
-        String phpUrl = "http://10.0.2.2/LogReg/payment.php";
+
         RequestQueue queue = Volley.newRequestQueue(this);
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, phpUrl,
@@ -134,10 +95,12 @@ public class Payment extends AppCompatActivity {
                         browser.loadUrl(checkoutUrl);
 
                     } catch (JSONException e) {
+                        e.printStackTrace();
                         Toast.makeText(Payment.this, "Invalid JSON from server", Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
+                    error.printStackTrace();
                     Toast.makeText(Payment.this, "Failed to connect to PHP server", Toast.LENGTH_SHORT).show();
                 });
 
