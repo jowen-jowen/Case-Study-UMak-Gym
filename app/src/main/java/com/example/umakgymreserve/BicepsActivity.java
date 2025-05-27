@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
 import java.util.HashMap;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BicepsActivity extends AppCompatActivity {
@@ -22,14 +24,25 @@ public class BicepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biceps);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(BicepsActivity.this, ReservationPage.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                finish();
+            }
+        });
+
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
         Button backButton = findViewById(R.id.btnBicepWorkoutB); // BACK button
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(BicepsActivity.this, WorkoutsActivity.class);
-            String firstNameExport = getIntent().getStringExtra("firstName");
-            String registerExport = getIntent().getStringExtra("typeRegister");
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
         });

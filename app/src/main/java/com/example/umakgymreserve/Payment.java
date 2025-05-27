@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -22,7 +24,7 @@ import org.json.JSONObject;
 public class Payment extends AppCompatActivity {
 
     private WebView browser;
-    private Button btnStartPayment, btnBackHome;
+    private Button btnStartPayment;
     String url = URLs.PAYMENT;
 
     @Override
@@ -30,9 +32,29 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(Payment.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(Payment.this, SessionBookingActivity.class);
+                            intent.putExtra("firstName", firstNameExport);
+                            intent.putExtra("typeRegister", registerExport);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+
         browser = findViewById(R.id.webView);
         btnStartPayment = findViewById(R.id.btnStartPayment);
-        btnBackHome = findViewById(R.id.btnBackHome);
+        Button btnBackHome = findViewById(R.id.btnBackHome);
 
         initializeWebView();
 
@@ -40,8 +62,6 @@ public class Payment extends AppCompatActivity {
 
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, ReservationPage.class);
-            String firstNameExport = getIntent().getStringExtra("firstName");
-            String registerExport = getIntent().getStringExtra("typeRegister");
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
             startActivity(intent);

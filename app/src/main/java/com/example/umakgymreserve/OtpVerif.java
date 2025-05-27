@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -29,6 +31,7 @@ public class OtpVerif extends AppCompatActivity {
     Button sendOtp, confirmOtp;
     EditText typeOtp, email;
     String otp;
+    String url = URLs.OTP_SEND;
 
 
     @Override
@@ -36,6 +39,20 @@ public class OtpVerif extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_otp_verif);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(OtpVerif.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
 
         sendOtp = findViewById(R.id.btnSentOtp);
         confirmOtp = findViewById(R.id.btnConfirmOtp);
@@ -46,8 +63,6 @@ public class OtpVerif extends AppCompatActivity {
         confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         sendOtp.setBackgroundResource(R.drawable.rounded_border_trans);
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
-
-        String url = URLs.OTP_SEND;
 
         sendOtp.setOnClickListener(v -> {
             String umakEmail = email.getText().toString().trim();

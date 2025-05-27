@@ -9,6 +9,8 @@ import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
 import java.util.HashMap;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LegsActivity extends AppCompatActivity {
@@ -17,10 +19,25 @@ public class LegsActivity extends AppCompatActivity {
     TextView descriptionTextView;
     private HashMap<String, String> exerciseDescriptions;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_legs);
+
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(LegsActivity.this, ReservationPage.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                finish();
+            }
+        });
 
         listViewLegs = findViewById(R.id.listViewLegs);
         descriptionTextView = findViewById(R.id.descriptionLegsTextView);
@@ -28,8 +45,6 @@ public class LegsActivity extends AppCompatActivity {
 
         backButton.setOnClickListener(v -> {
             Intent intent = new Intent(LegsActivity.this, WorkoutsActivity.class);
-            String firstNameExport = getIntent().getStringExtra("firstName");
-            String registerExport = getIntent().getStringExtra("typeRegister");
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
         });

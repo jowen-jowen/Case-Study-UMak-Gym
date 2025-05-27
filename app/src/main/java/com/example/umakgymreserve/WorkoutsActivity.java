@@ -4,25 +4,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class WorkoutsActivity extends AppCompatActivity {
 
     // Declare buttons
     private Button btnChest, btnBiceps, btnLegs, btnBack, btnBackToMain;
+    String firstNameExport = getIntent().getStringExtra("firstName");
+    String registerExport = getIntent().getStringExtra("typeRegister");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workouts);
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(WorkoutsActivity.this, ReservationPage.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                finish();
+            }
+        });
+
         // Initialize buttons
         initializeViews();
 
         // Set click listeners
         setupButtonClickListeners();
-
-
     }
 
     private void initializeViews() {
@@ -43,8 +55,6 @@ public class WorkoutsActivity extends AppCompatActivity {
 
     private void navigateToActivity(Class<?> activityClass) {
         Intent intent = new Intent(WorkoutsActivity.this, activityClass);
-        String firstNameExport = getIntent().getStringExtra("firstName");
-        String registerExport = getIntent().getStringExtra("typeRegister");
         intent.putExtra("firstName", firstNameExport);
         intent.putExtra("typeRegister", registerExport);
         startActivity(intent);
