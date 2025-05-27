@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
@@ -31,11 +33,22 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(SignUp.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to cancel?\nYou will be throw back to Login Session")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(SignUp.this,LogReg.class);
+                            startActivity(intent);
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
         });
+
         first = findViewById(R.id.etFirstName);
         last = findViewById(R.id.etLastName);
         rdGroupType = findViewById(R.id.rdGrpType);

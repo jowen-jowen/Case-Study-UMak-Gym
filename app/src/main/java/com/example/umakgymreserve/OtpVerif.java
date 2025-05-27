@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -29,6 +31,7 @@ public class OtpVerif extends AppCompatActivity {
     Button sendOtp, confirmOtp;
     EditText typeOtp, email;
     String otp;
+    String url = URLs.OTP_SEND;
 
 
     @Override
@@ -36,6 +39,22 @@ public class OtpVerif extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_otp_verif);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(OtpVerif.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(OtpVerif.this, LogReg.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
 
         sendOtp = findViewById(R.id.btnSentOtp);
         confirmOtp = findViewById(R.id.btnConfirmOtp);
@@ -46,11 +65,6 @@ public class OtpVerif extends AppCompatActivity {
         confirmOtp.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#000000")));
         sendOtp.setBackgroundResource(R.drawable.rounded_border_trans);
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
-
-
-
-        String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
-
 
         sendOtp.setOnClickListener(v -> {
             String umakEmail = email.getText().toString().trim();
@@ -67,7 +81,7 @@ public class OtpVerif extends AppCompatActivity {
                 sendOtp.setText("Sending...");
                 Log.d("OtpVerif", "Send OTP clicked");
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
                             try {
                                 JSONObject object = new JSONObject(response);

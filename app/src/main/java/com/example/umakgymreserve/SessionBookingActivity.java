@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
@@ -29,15 +31,31 @@ public class SessionBookingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_booking);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(SessionBookingActivity.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+                            intent.putExtra("firstName", firstNameExport);
+                            intent.putExtra("typeRegister", registerExport);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+
         calendarGrid = findViewById(R.id.calendarGrid);
         tvSelectedDate = findViewById(R.id.tvSelectedDate);
         btnSelectDate = findViewById(R.id.btnSelectDate);
         btnClearSelection = findViewById(R.id.btnClearSelection);
         btnBack = findViewById(R.id.btnBackToMain);
         btnProceed = findViewById(R.id.btnProceed);
-
-        String firstNameExport = getIntent().getStringExtra("firstName");
-        String registerExport = getIntent().getStringExtra("typeRegister");
 
         generateCalendar();
 

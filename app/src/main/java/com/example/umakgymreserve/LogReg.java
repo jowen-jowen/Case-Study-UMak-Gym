@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -32,18 +33,21 @@ public class LogReg extends AppCompatActivity {
     Button login, signUp;
 
     EditText user,pass;
-
-    String URL = "http://10.0.2.2/LogReg/login.php";
+    String url = URLs.LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_log_reg);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(LogReg.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
 
         login = findViewById(R.id.btnLogin);
@@ -61,7 +65,7 @@ public class LogReg extends AppCompatActivity {
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     response -> {
                         try {
                             JSONObject obj = new JSONObject(response);

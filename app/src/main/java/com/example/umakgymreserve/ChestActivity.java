@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -8,6 +9,8 @@ import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
 import java.util.HashMap;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ChestActivity extends AppCompatActivity {
@@ -15,21 +18,32 @@ public class ChestActivity extends AppCompatActivity {
     ListView listViewChest;
     TextView descriptionTextView;
     private HashMap<String, String> exerciseDescriptions;
+    String firstNameExport = getIntent().getStringExtra("firstName");
+    String registerExport = getIntent().getStringExtra("typeRegister");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chest);
 
-        listViewChest = findViewById(R.id.listViewChest);
-        descriptionTextView = findViewById(R.id.descriptionTextView);
-        Button backButton = findViewById(R.id.btn4); // BACK button
-
-        backButton.setOnClickListener(new View.OnClickListener() {
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
-            public void onClick(View v) {
-                finish(); // Go back
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ChestActivity.this, ReservationPage.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                finish();
             }
+        });
+
+        listViewChest = findViewById(R.id.listViewChest);
+        descriptionTextView = findViewById(R.id.descriptionChestTextView);
+        Button backButton = findViewById(R.id.btnChestWorkoutB); // BACK button
+
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(ChestActivity.this, WorkoutsActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
         });
 
         exerciseDescriptions = new HashMap<>();

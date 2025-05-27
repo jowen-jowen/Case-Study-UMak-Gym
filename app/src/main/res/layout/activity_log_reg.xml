@@ -37,20 +37,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:layout_marginEnd="64dp"
+            android:layout_marginEnd="28dp"
             android:layout_marginBottom="11dp"
             android:fontFamily="@font/roboto"
             android:shadowColor="#D2000000"
             android:shadowDx="2"
             android:shadowDy="3"
             android:shadowRadius="1"
-            android:text="UMak Fitness Gym"
+            android:text="UMak Gym Reservation"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/textView14"

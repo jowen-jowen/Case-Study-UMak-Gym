@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -8,6 +9,8 @@ import android.widget.AdapterView;
 import android.view.View;
 import android.widget.Button;
 import java.util.HashMap;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class BicepsActivity extends AppCompatActivity {
@@ -21,15 +24,27 @@ public class BicepsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_biceps);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(BicepsActivity.this, ReservationPage.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                finish();
+            }
+        });
+
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
-        Button backButton = findViewById(R.id.btn3); // BACK button
+        Button backButton = findViewById(R.id.btnBicepWorkoutB); // BACK button
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Go back to previous screen
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BicepsActivity.this, WorkoutsActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
         });
 
         exerciseDescriptions = new HashMap<>();

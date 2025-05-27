@@ -1,11 +1,13 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
@@ -20,6 +22,30 @@ public class ReservationPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reservation_page);
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(ReservationPage.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?\nBacking out will meant for Log Out")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(ReservationPage.this, LogReg.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(ReservationPage.this, LogReg.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         CardView workoutsCard = findViewById(R.id.cView1);
         CardView announcementCard = findViewById(R.id.cView2);
