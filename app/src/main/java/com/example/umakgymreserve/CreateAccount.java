@@ -43,8 +43,10 @@ public class CreateAccount extends AppCompatActivity {
             public void handleOnBackPressed() {
                 new AlertDialog.Builder(CreateAccount.this)
                         .setTitle("Warning")
-                        .setMessage("Are you sure you want to go back?")
+                        .setMessage("Are you sure you want to cancel?\nYou will be throw back to Login Session")
                         .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(CreateAccount.this, LogReg.class);
+                            startActivity(intent);
                             finish();
                         })
                         .setNegativeButton("No", null)

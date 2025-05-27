@@ -47,6 +47,8 @@ public class OtpVerif extends AppCompatActivity {
                         .setTitle("Warning")
                         .setMessage("Are you sure you want to go back?")
                         .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(OtpVerif.this, LogReg.class);
+                            startActivity(intent);
                             finish();
                         })
                         .setNegativeButton("No", null)

@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,22 @@ public class ReservationPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_reservation_page);
-        
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(ReservationPage.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?\nBacking out will meant for Log Out")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(ReservationPage.this, LogReg.class);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
