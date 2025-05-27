@@ -62,7 +62,7 @@
         app:strokeWidth="2dp"/>
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvAnnouncement"
         android:layout_width="312dp"
         android:layout_height="383dp"
         android:layout_marginStart="84dp"

@@ -32,8 +32,7 @@ public class LogReg extends AppCompatActivity {
     Button login, signUp;
 
     EditText user,pass;
-
-    String URL = "http://10.0.2.2/LogReg/login.php";
+    String url = URLs.LOGIN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class LogReg extends AppCompatActivity {
             String username = user.getText().toString().trim();
             String password = pass.getText().toString().trim();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     response -> {
                         try {
                             JSONObject obj = new JSONObject(response);

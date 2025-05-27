@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">UmakGymReserve</string>
-    <string name="title_page">UMAK FITNESS \nGYM RESERVATION</string>
+    <string name="title_page">UMAK \nGYM RESERVATION</string>
     <string name="todo">TODO</string>
     <string name="button_start">GET STARTED</string>
     <string name="login_register">LOGIN / REGISTER</string>
@@ -35,7 +35,7 @@
     <string name="create_username">CREATE USERNAME</string>
     <string name="create_password">CREATE PASSWORD</string>
     <string name="reservation_page">RESERVATION PAGE</string>
-    <string name="umak_fitness_gym">UMak Fitness Gym</string>
+    <string name="umak_fitness_gym">UMak Gym Reservation</string>
     <string name="back_to_home">Back to Home</string>
     <string name="attention_all_university_fitness_gym_users_n_neffective_april_22_2024_there_will_be_a_change_in_the_usage_fees_for_the_university_fitness_gym_please_refer_the_updated_fee_schedule_below_n_n_n_nstudents_p30_00_per_session_n_nfaculty_employee_p20_00_per_session_n_nalumni_p50_00_per_session_n_n_n_nthank_you_for_your_understanding_and_cooperation_n_nstay_healthy_and_active">Attention all University Fitness Gym Users! \n\nEffective April 22, 2024, there will be a change in the usage fees for the University Fitness Gym. Please refer the updated fee schedule below:\n\n\n\nStudents: P30.00 per session\n\nFaculty/Employee: P20.00 per session\n\nAlumni: P50.00 per session\n\n\n\nThank you for your understanding and cooperation.\n\nStay healthy and active!</string>
 </resources>

@@ -37,7 +37,7 @@
             android:shadowDx="2"
             android:shadowDy="3"
             android:shadowRadius="1"
-            android:text="UMak Fitness Gym"
+            android:text="UMak Gym Reservation"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"

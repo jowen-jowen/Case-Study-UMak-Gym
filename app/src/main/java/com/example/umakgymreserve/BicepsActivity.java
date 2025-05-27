@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -23,13 +24,14 @@ public class BicepsActivity extends AppCompatActivity {
 
         listViewBiceps = findViewById(R.id.listViewBiceps);
         descriptionTextView = findViewById(R.id.descriptionTextView);
-        Button backButton = findViewById(R.id.btn3); // BACK button
+        Button backButton = findViewById(R.id.btnBicepWorkoutB); // BACK button
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Go back to previous screen
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(BicepsActivity.this, WorkoutsActivity.class);
+            String firstNameExport = getIntent().getStringExtra("firstName");
+            String registerExport = getIntent().getStringExtra("typeRegister");
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
         });
 
         exerciseDescriptions = new HashMap<>();

@@ -47,10 +47,7 @@ public class OtpVerif extends AppCompatActivity {
         sendOtp.setBackgroundResource(R.drawable.rounded_border_trans);
         confirmOtp.setBackgroundResource(R.drawable.rounded_border_trans);
 
-
-
-        String urlOtp = "http://10.0.2.2/LogReg/otpSending.php";
-
+        String url = URLs.OTP_SEND;
 
         sendOtp.setOnClickListener(v -> {
             String umakEmail = email.getText().toString().trim();
@@ -67,7 +64,7 @@ public class OtpVerif extends AppCompatActivity {
                 sendOtp.setText("Sending...");
                 Log.d("OtpVerif", "Send OTP clicked");
 
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, urlOtp,
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                         response -> {
                             try {
                                 JSONObject object = new JSONObject(response);

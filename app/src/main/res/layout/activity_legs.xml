@@ -43,11 +43,11 @@
         android:text="Select an exercise to view description"
         android:textColor="#052865"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/btn4"
+        app:layout_constraintBottom_toTopOf="@+id/btnLegsWorkoutB"
         app:layout_constraintStart_toEndOf="@+id/listViewLegs" />
 
     <Button
-        android:id="@+id/btn4"
+        android:id="@+id/btnLegsWorkoutB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="37dp"

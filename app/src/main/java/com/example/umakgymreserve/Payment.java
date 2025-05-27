@@ -23,7 +23,7 @@ public class Payment extends AppCompatActivity {
 
     private WebView browser;
     private Button btnStartPayment, btnBackHome;
-    String phpUrl = "http://10.0.2.2/LogReg/payment.php";
+    String url = URLs.PAYMENT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class Payment extends AppCompatActivity {
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, phpUrl,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     try {
                         JSONObject jsonObject = new JSONObject(response);

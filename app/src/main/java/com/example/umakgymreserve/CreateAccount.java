@@ -28,7 +28,7 @@ import java.util.Map;
 public class CreateAccount extends AppCompatActivity {
     Button confirmAcc;
     EditText createUser, createPass;
-    String URL = "http://10.0.2.2/LogReg/register.php";
+    String url = URLs.REGISTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,7 @@ public class CreateAccount extends AppCompatActivity {
                 createPass.setError("Invalid password or Contains Unsafe Characters");
             }
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL,
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                     response -> {
                         try {
                             JSONObject obj = new JSONObject(response);
