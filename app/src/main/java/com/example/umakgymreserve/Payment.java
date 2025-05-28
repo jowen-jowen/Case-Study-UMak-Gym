@@ -98,7 +98,7 @@ public class Payment extends AppCompatActivity {
                     finish();
 
                     return true;
-                } else if (url.contains("fail") || url.contains("pm.link/gcash/failure")) {
+                } else if (url.contains("pm.link/gcash/failure")) {
                     Intent failIntent = new Intent(Payment.this, PaymentFailed.class);
                     startActivity(failIntent);
                     finish();

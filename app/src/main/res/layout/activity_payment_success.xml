@@ -44,11 +44,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="159dp"
-        android:text="Reference Number: "
+        android:hint="Reference Number: "
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewSuccess" />
 
@@ -57,7 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="4dp"
+        android:hint="Type: "
         android:text="Type: "
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/reservationDate"
@@ -69,12 +71,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="211dp"
-        android:layout_marginBottom="8dp"
-        android:text="Reservation Date: "
+        android:layout_marginBottom="28dp"
+        android:hint="Reservation Date: "
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/tvAmount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.727"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -83,6 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
+        android:hint="Name: "
         android:text="Name: "
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,11 +111,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="291dp"
-        android:layout_marginBottom="228dp"
+        android:layout_marginBottom="240dp"
+        android:hint="Amount"
         android:text="Amount: "
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/btnBackToHome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
