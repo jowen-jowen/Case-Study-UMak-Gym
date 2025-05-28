@@ -30,7 +30,7 @@ import java.util.Map;
 public class CreateAccount extends AppCompatActivity {
     Button confirmAcc;
     EditText createUser, createPass;
-    String url = "http://10.0.2.2/LogReg/register.php";
+    String url = URLs.REGISTER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

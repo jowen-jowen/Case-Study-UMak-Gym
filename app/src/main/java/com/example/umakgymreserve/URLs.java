@@ -8,4 +8,5 @@ public class URLs {
     public static final String REGISTER = BASE_URL + "register.php";
     public static final String PAYMENT  =  "https://bfe3-136-158-33-155.ngrok-free.app/LogReg/payment.php";
     public static final String SUCCESS = "https://bfe3-136-158-33-155.ngrok-free.app/LogReg/success.php";
+    public static final String RECEIPT  = BASE_URL + "receipt.php";
 }

@@ -20,6 +20,7 @@ public class ChestActivity extends AppCompatActivity {
     private HashMap<String, String> exerciseDescriptions;
     String firstNameExport = getIntent().getStringExtra("firstName");
     String registerExport = getIntent().getStringExtra("typeRegister");
+    String userId = getIntent().getStringExtra("user_id");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +30,10 @@ public class ChestActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(ChestActivity.this, ReservationPage.class);
+                Intent intent = new Intent(ChestActivity.this, WorkoutsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 finish();
             }
         });
@@ -44,6 +46,7 @@ public class ChestActivity extends AppCompatActivity {
             Intent intent = new Intent(ChestActivity.this, WorkoutsActivity.class);
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
         });
 
         exerciseDescriptions = new HashMap<>();

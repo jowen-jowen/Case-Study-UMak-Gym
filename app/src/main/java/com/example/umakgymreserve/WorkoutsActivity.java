@@ -14,6 +14,7 @@ public class WorkoutsActivity extends AppCompatActivity {
     private Button btnChest, btnBiceps, btnLegs, btnBack, btnBackToMain;
     String firstNameExport = getIntent().getStringExtra("firstName");
     String registerExport = getIntent().getStringExtra("typeRegister");
+    String userId = getIntent().getStringExtra("user_id");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +27,13 @@ public class WorkoutsActivity extends AppCompatActivity {
                 Intent intent = new Intent(WorkoutsActivity.this, ReservationPage.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 finish();
             }
         });
 
         // Initialize buttons
         initializeViews();
-
         // Set click listeners
         setupButtonClickListeners();
     }
@@ -57,6 +58,7 @@ public class WorkoutsActivity extends AppCompatActivity {
         Intent intent = new Intent(WorkoutsActivity.this, activityClass);
         intent.putExtra("firstName", firstNameExport);
         intent.putExtra("typeRegister", registerExport);
+        intent.putExtra("user_id", userId);
         startActivity(intent);
     }
 }

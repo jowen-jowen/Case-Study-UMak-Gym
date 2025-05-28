@@ -73,11 +73,13 @@ public class LogReg extends AppCompatActivity {
                             if (status.equals("success")) {
                                 String firstName = obj.getString("firstName");
                                 String typeRegister = obj.getString("typeRegister");
+                                String userId = obj.getString("user_id");
 
                                 Intent intent = new Intent(LogReg.this, ReservationPage.class);
                                 intent.putExtra("username", username);
                                 intent.putExtra("firstName", firstName);
                                 intent.putExtra("typeRegister", typeRegister);
+                                intent.putExtra("user_id", userId);
                                 startActivity(intent);
                                 finish();
                             } else {

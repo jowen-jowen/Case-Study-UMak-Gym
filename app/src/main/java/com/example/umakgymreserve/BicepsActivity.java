@@ -26,13 +26,15 @@ public class BicepsActivity extends AppCompatActivity {
 
         String firstNameExport = getIntent().getStringExtra("firstName");
         String registerExport = getIntent().getStringExtra("typeRegister");
+        String userId = getIntent().getStringExtra("user_id");
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                Intent intent = new Intent(BicepsActivity.this, ReservationPage.class);
+                Intent intent = new Intent(BicepsActivity.this, WorkoutsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 finish();
             }
         });
@@ -45,6 +47,7 @@ public class BicepsActivity extends AppCompatActivity {
             Intent intent = new Intent(BicepsActivity.this, WorkoutsActivity.class);
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
         });
 
         exerciseDescriptions = new HashMap<>();

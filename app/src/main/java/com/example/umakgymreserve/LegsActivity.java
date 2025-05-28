@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.ImageView;
 import android.widget.Button;
 import java.util.HashMap;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LegsActivity extends AppCompatActivity {
@@ -24,26 +26,31 @@ public class LegsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_legs);
 
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+        String userId = getIntent().getStringExtra("user_id");
+
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent intent = new Intent(LegsActivity.this, WorkoutsActivity.class);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
+            }
+        });
         listViewLegs = findViewById(R.id.listViewLegs);
         descriptionTextView = findViewById(R.id.descriptionLegsTextView);
         exerciseImageView = findViewById(R.id.imageViewLegs); // Add this ImageView in XML layout
         Button backButton = findViewById(R.id.btnLegsWorkoutB);
 
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                String firstNameExport = getIntent().getStringExtra("firstName");
-                String registerExport = getIntent().getStringExtra("typeRegister");
-                intent.putExtra("firstName", firstNameExport);
-                intent.putExtra("typeRegister", registerExport);
-                finish();
-            }
+        backButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LegsActivity.this, WorkoutsActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
         });
-
-        backButton.setOnClickListener(v -> finish());
-
 
         initializeExerciseData();
 
