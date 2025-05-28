@@ -85,6 +85,7 @@ public class SessionBookingActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
+
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
@@ -94,8 +95,13 @@ public class SessionBookingActivity extends AppCompatActivity {
         btnProceed.setOnClickListener(v -> {
             if (selectedDates.size() != 1) {
                 Toast.makeText(this, "Please select exactly 1 date to proceed.", Toast.LENGTH_SHORT).show();
+
             } else {
+                String selectedDate = tvSelectedDate.getText().toString().trim();
                 Intent intent = new Intent(SessionBookingActivity.this, Payment.class);
+                intent.putExtra("selectedDate", selectedDate);
+                intent.putExtra("firstName", firstNameExport);
+                intent.putExtra("typeRegister", registerExport);
                 startActivity(intent);
                 finish();
             }

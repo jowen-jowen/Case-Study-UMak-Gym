@@ -2,6 +2,7 @@ package com.example.umakgymreserve;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,7 +27,7 @@ public class LegsActivity extends AppCompatActivity {
         listViewLegs = findViewById(R.id.listViewLegs);
         descriptionTextView = findViewById(R.id.descriptionLegsTextView);
         exerciseImageView = findViewById(R.id.imageViewLegs); // Add this ImageView in XML layout
-        Button backButton = findViewById(R.id.btn4);
+        Button backButton = findViewById(R.id.btnLegsWorkoutB);
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -40,9 +41,9 @@ public class LegsActivity extends AppCompatActivity {
                 finish();
             }
         });
-=========
+
         backButton.setOnClickListener(v -> finish());
->>>>>>>>> Temporary merge branch 2
+
 
         initializeExerciseData();
 

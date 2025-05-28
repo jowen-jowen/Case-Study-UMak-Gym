@@ -48,6 +48,7 @@ public class BackActivity extends AppCompatActivity {
             intent.putExtra("typeRegister", registerExport);
         });
 
+
         exerciseDescriptions = new HashMap<>();
         exerciseDescriptions.put("Pull-Ups (Various Grips)", "Pull-Ups target your lats, traps, and biceps. Use different grips to emphasize different muscles.");
         exerciseDescriptions.put("Barbell Rows (Bent-Over Rows)", "Strengthens the middle back and posterior chain. Keep your back straight at about 45 degrees.");
@@ -59,6 +60,7 @@ public class BackActivity extends AppCompatActivity {
         exerciseDescriptions.put("Back Extensions (Hyperextensions)", "Targets the erector spinae. Can be done with or without additional weight.");
         exerciseDescriptions.put("T-Bar Rows", "Compound movement for thickness in the middle back. Keep your chest up throughout the movement.");
         exerciseDescriptions.put("Shrugs (Barbell or Dumbbell)", "Focuses on the trapezius muscles. Lift with your shoulders, not your arms.");
+
 
         String[] backExercises = {
                 "Pull-Ups (Various Grips)",
