@@ -56,6 +56,7 @@ public class ReservationPage extends AppCompatActivity {
 
         String firstNameExport = getIntent().getStringExtra("firstName");
         String registerExport = getIntent().getStringExtra("typeRegister");
+        String userId = getIntent().getStringExtra("user_id");
         firstName.setText(String.format("WELCOME %s!", firstNameExport).toUpperCase());
 
         sessionBookingCard.setOnClickListener(new View.OnClickListener() {
@@ -64,6 +65,7 @@ public class ReservationPage extends AppCompatActivity {
                 Intent intent = new Intent(ReservationPage.this, SessionBookingActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
                 finish();
             }
@@ -76,6 +78,7 @@ public class ReservationPage extends AppCompatActivity {
                 Intent intent = new Intent(ReservationPage.this, WorkoutsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
                 finish();
             }
@@ -88,6 +91,7 @@ public class ReservationPage extends AppCompatActivity {
                 Intent intent = new Intent(ReservationPage.this, ContactUsActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
                 finish();
             }
@@ -100,6 +104,7 @@ public class ReservationPage extends AppCompatActivity {
                 Intent intent = new Intent(ReservationPage.this, AnnouncementActivity.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
                 finish();
             }

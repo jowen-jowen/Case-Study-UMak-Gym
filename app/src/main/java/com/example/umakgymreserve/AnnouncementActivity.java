@@ -12,6 +12,7 @@ public class AnnouncementActivity extends AppCompatActivity {
     TextView announcement;
     String firstNameExport = getIntent().getStringExtra("firstName");
     String registerExport = getIntent().getStringExtra("typeRegister");
+    String userId = getIntent().getStringExtra("user_id");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class AnnouncementActivity extends AppCompatActivity {
                 Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 finish();
             }
         });
@@ -35,6 +37,7 @@ public class AnnouncementActivity extends AppCompatActivity {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
             startActivity(intent);
             finish();
         });

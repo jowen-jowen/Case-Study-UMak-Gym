@@ -33,6 +33,7 @@ public class SessionBookingActivity extends AppCompatActivity {
 
         String firstNameExport = getIntent().getStringExtra("firstName");
         String registerExport = getIntent().getStringExtra("typeRegister");
+        String userId = getIntent().getStringExtra("user_id");
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -43,6 +44,7 @@ public class SessionBookingActivity extends AppCompatActivity {
                             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
                             intent.putExtra("firstName", firstNameExport);
                             intent.putExtra("typeRegister", registerExport);
+                            intent.putExtra("user_id", userId);
                             finish();
                         })
                         .setNegativeButton("No", null)
@@ -85,9 +87,9 @@ public class SessionBookingActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(SessionBookingActivity.this, ReservationPage.class);
-
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
             startActivity(intent);
             finish();
         });
@@ -102,6 +104,7 @@ public class SessionBookingActivity extends AppCompatActivity {
                 intent.putExtra("selectedDate", selectedDate);
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
+                intent.putExtra("user_id", userId);
                 startActivity(intent);
                 finish();
             }

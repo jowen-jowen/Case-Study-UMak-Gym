@@ -1,5 +1,6 @@
 package com.example.umakgymreserve;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +34,29 @@ public class Payment extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String firstNameExport = getIntent().getStringExtra("firstName");
+        String registerExport = getIntent().getStringExtra("typeRegister");
+        String userId = getIntent().getStringExtra("user_id");
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                new AlertDialog.Builder(Payment.this)
+                        .setTitle("Warning")
+                        .setMessage("Are you sure you want to go back?")
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            Intent intent = new Intent(Payment.this, SessionBookingActivity.class);
+                            intent.putExtra("firstName", firstNameExport);
+                            intent.putExtra("typeRegister", registerExport);
+                            intent.putExtra("user_id", userId);
+                            startActivity(intent);
+                            finish();
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+
+        });
         if (BuildConfig.DEBUG) {
             WebView.setWebContentsDebuggingEnabled(true);
         }
@@ -50,8 +75,7 @@ public class Payment extends AppCompatActivity {
 
         btnBackHome.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, ReservationPage.class);
-            String firstNameExport = getIntent().getStringExtra("firstName");
-            String registerExport = getIntent().getStringExtra("typeRegister");
+
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
             startActivity(intent);
