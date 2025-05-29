@@ -9,13 +9,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ContactUsActivity extends AppCompatActivity {
     Button btnHome;
-    String firstNameExport = getIntent().getStringExtra("firstName");
-    String registerExport = getIntent().getStringExtra("typeRegister");
-    String userId = getIntent().getStringExtra("user_id");
+    private String firstNameExport;
+    private String registerExport;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
+
+        Intent fetch = getIntent();
+        firstNameExport = fetch.getStringExtra("firstName");
+        registerExport = fetch.getStringExtra("typeRegister");
+        userId = fetch.getStringExtra("user_id");
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override

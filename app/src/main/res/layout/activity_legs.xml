@@ -6,15 +6,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5D328"
-    android:padding="16dp"
     tools:context=".LegsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:background="#052865"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:shadowColor="#D2000000"
+        android:shadowDx="2"
+        android:shadowDy="3"
+        android:shadowRadius="1"
+        android:text="WORKOUT GUIDE"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/tvLegsTitle"
         android:layout_width="245dp"
         android:layout_height="59dp"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/roboto_bold"
         android:text="Legs Exercises"
         android:textColor="#052865"
@@ -26,7 +52,7 @@
         android:id="@+id/listViewLegs"
         android:layout_width="203dp"
         android:layout_height="535dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +63,7 @@
         android:layout_width="150dp"
         android:layout_height="288dp"
         android:layout_marginStart="24dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="64dp"
         android:background="#00000000"
         android:padding="16dp"
         android:text="Select an exercise to view description"
@@ -50,18 +76,18 @@
         android:id="@+id/btnLegsWorkoutB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="41dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="48dp"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewLegs"
-        android:layout_width="154dp"
-        android:layout_height="193dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="176dp"
+        android:layout_height="244dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toEndOf="@+id/listViewLegs"
         app:layout_constraintTop_toBottomOf="@+id/tvLegsTitle"
         app:srcCompat="@drawable/default_exercise2" />

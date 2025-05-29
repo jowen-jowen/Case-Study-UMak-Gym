@@ -18,14 +18,19 @@ public class ChestActivity extends AppCompatActivity {
     ListView listViewChest;
     TextView descriptionTextView;
     private HashMap<String, String> exerciseDescriptions;
-    String firstNameExport = getIntent().getStringExtra("firstName");
-    String registerExport = getIntent().getStringExtra("typeRegister");
-    String userId = getIntent().getStringExtra("user_id");
+    private String firstNameExport;
+    private String registerExport;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chest);
+
+        Intent fetch = getIntent();
+        firstNameExport = fetch.getStringExtra("firstName");
+        registerExport = fetch.getStringExtra("typeRegister");
+        userId = fetch.getStringExtra("user_id");
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -34,6 +39,7 @@ public class ChestActivity extends AppCompatActivity {
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
                 intent.putExtra("user_id", userId);
+                startActivity(intent);
                 finish();
             }
         });
@@ -47,6 +53,8 @@ public class ChestActivity extends AppCompatActivity {
             intent.putExtra("firstName", firstNameExport);
             intent.putExtra("typeRegister", registerExport);
             intent.putExtra("user_id", userId);
+            startActivity(intent);
+            finish();
         });
 
         exerciseDescriptions = new HashMap<>();

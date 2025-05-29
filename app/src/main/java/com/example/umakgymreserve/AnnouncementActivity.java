@@ -10,14 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class AnnouncementActivity extends AppCompatActivity {
     TextView announcement;
-    String firstNameExport = getIntent().getStringExtra("firstName");
-    String registerExport = getIntent().getStringExtra("typeRegister");
-    String userId = getIntent().getStringExtra("user_id");
+    private String firstNameExport;
+    private String registerExport;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_announcement);
 
+        Intent fetch = getIntent();
+        firstNameExport = fetch.getStringExtra("firstName");
+        registerExport = fetch.getStringExtra("typeRegister");
+        userId = fetch.getStringExtra("user_id");
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -32,7 +36,6 @@ public class AnnouncementActivity extends AppCompatActivity {
         Button btnBack = findViewById(R.id.btnBackHomeAnnouncement);
         announcement = findViewById(R.id.tvAnnouncement);
 
-        announcement.setText("");
         btnBack.setOnClickListener(v -> {
             Intent intent = new Intent(AnnouncementActivity.this, ReservationPage.class);
             intent.putExtra("firstName", firstNameExport);

@@ -13,7 +13,6 @@ public class WorkoutsActivity extends AppCompatActivity {
     // Declare buttons
     private Button btnChest, btnBiceps, btnLegs, btnBack, btnBackToMain;
 
-    // Declare variables for intent extras
     private String firstNameExport, registerExport, userId;
 
     @Override
@@ -33,7 +32,7 @@ public class WorkoutsActivity extends AppCompatActivity {
                 intent.putExtra("firstName", firstNameExport);
                 intent.putExtra("typeRegister", registerExport);
                 intent.putExtra("user_id", userId);
-                startActivity(intent); // you missed this
+                startActivity(intent);
                 finish();
             }
         });
@@ -53,18 +52,44 @@ public class WorkoutsActivity extends AppCompatActivity {
     }
 
     private void setupButtonClickListeners() {
-        btnChest.setOnClickListener(view -> navigateToActivity(ChestActivity.class));
-        btnBiceps.setOnClickListener(view -> navigateToActivity(BicepsActivity.class));
-        btnLegs.setOnClickListener(view -> navigateToActivity(LegsActivity.class));
-        btnBack.setOnClickListener(view -> navigateToActivity(BackActivity.class));
-        btnBackToMain.setOnClickListener(view -> navigateToActivity(ReservationPage.class));
-    }
+        btnChest.setOnClickListener(view -> {
+            Intent intent = new Intent(WorkoutsActivity.this, ChestActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+        });
 
-    private void navigateToActivity(Class<?> activityClass) {
-        Intent intent = new Intent(WorkoutsActivity.this, activityClass);
-        intent.putExtra("firstName", firstNameExport);
-        intent.putExtra("typeRegister", registerExport);
-        intent.putExtra("user_id", userId);
-        startActivity(intent);
+        btnBiceps.setOnClickListener(view -> {
+            Intent intent = new Intent(WorkoutsActivity.this, BicepsActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+        });
+
+        btnLegs.setOnClickListener(view -> {
+            Intent intent = new Intent(WorkoutsActivity.this, LegsActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+        });
+
+        btnBack.setOnClickListener(view -> {
+            Intent intent = new Intent(WorkoutsActivity.this, BackActivity.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+        });
+
+        btnBackToMain.setOnClickListener(view -> {
+            Intent intent = new Intent(WorkoutsActivity.this, ReservationPage.class);
+            intent.putExtra("firstName", firstNameExport);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+        });
     }
 }
