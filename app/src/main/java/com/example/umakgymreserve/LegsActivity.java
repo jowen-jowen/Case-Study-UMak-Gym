@@ -110,7 +110,7 @@ public class LegsActivity extends AppCompatActivity {
         if (imageRes != null) {
             exerciseImageView.setImageResource(imageRes);
         } else {
-            exerciseImageView.setImageResource(R.drawable.default_exercise); // Add default image
+            exerciseImageView.setImageResource(R.drawable.default_exercise2); // Add default image
         }
     }
 }
