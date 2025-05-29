@@ -59,6 +59,7 @@ public class ReservationPage extends AppCompatActivity {
         String userId = getIntent().getStringExtra("user_id");
         firstName.setText(String.format("WELCOME %s!", firstNameExport).toUpperCase());
 
+
         sessionBookingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

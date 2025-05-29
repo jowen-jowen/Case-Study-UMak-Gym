@@ -20,7 +20,7 @@ import java.util.*;
 
 public class SessionBookingActivity extends AppCompatActivity {
     private GridLayout calendarGrid;
-    private TextView tvSelectedDate;
+    private TextView tvSelectedDate ;
     Button btnSelectDate, btnClearSelection, btnBack, btnProceed;
     private final List<Calendar> selectedDates = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
@@ -70,7 +70,7 @@ public class SessionBookingActivity extends AppCompatActivity {
                 Toast.makeText(this, "Please select only ONE booking date.", Toast.LENGTH_SHORT).show();
             } else {
                 Calendar date = selectedDates.get(0);
-                tvSelectedDate.setText("Selected: " + sdf.format(date.getTime()));
+                tvSelectedDate.setText(sdf.format(date.getTime()));
             }
         });
 

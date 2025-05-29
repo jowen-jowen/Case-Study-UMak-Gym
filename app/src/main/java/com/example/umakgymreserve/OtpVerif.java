@@ -86,14 +86,19 @@ public class OtpVerif extends AppCompatActivity {
                             try {
                                 JSONObject object = new JSONObject(response);
                                 boolean success = object.getBoolean("success");
+                                String message = object.getString("message");
+
                                 if (success) {
                                     otp = object.getString("otp").trim();
                                     Toast.makeText(OtpVerif.this, "OTP has been sent to your email!", Toast.LENGTH_SHORT).show();
                                     sendOtp.setText("OTP Sent");
                                     typeOtp.setFocusable(true);
                                 } else {
-                                    String message = object.getString("message");
-                                    Toast.makeText(OtpVerif.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                    if (message.equalsIgnoreCase("Email not found")) {
+                                        email.setError("Email not registered");
+                                    } else {
+                                        Toast.makeText(OtpVerif.this, "Error: " + message, Toast.LENGTH_SHORT).show();
+                                    }
                                     sendOtp.setText("Send OTP");
                                     sendOtp.setEnabled(true);
                                     sendOtp.setClickable(true);

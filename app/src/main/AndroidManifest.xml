@@ -20,7 +20,6 @@
         <activity
             android:name=".PaymentFailed"
             android:exported="false" />
-        <!-- Payment Activities -->
         <activity
             android:name=".PaymentSuccess"
             android:exported="true">

@@ -2,7 +2,6 @@ package com.example.umakgymreserve;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -115,16 +114,28 @@ public class Payment extends AppCompatActivity {
                     String selectedDate = getIntent().getStringExtra("selectedDate");
                     String firstNameExport = getIntent().getStringExtra("firstName");
                     String registerExport = getIntent().getStringExtra("typeRegister");
+                    String userId = getIntent().getStringExtra("user_id");
                     intent.putExtra("selectedDate", selectedDate);
                     intent.putExtra("firstName", firstNameExport);
                     intent.putExtra("typeRegister", registerExport);
+                    intent.putExtra("user_id", userId);
                     startActivity(intent);
                     finish();
 
                     return true;
                 } else if (url.contains("pm.link/gcash/failure")) {
-                    Intent failIntent = new Intent(Payment.this, PaymentFailed.class);
-                    startActivity(failIntent);
+                    Intent intent = new Intent(Payment.this, PaymentFailed.class);
+                    intent.putExtra("payment_code", paymentCode);
+
+                    String selectedDate = getIntent().getStringExtra("selectedDate");
+                    String firstNameExport = getIntent().getStringExtra("firstName");
+                    String registerExport = getIntent().getStringExtra("typeRegister");
+                    String userId = getIntent().getStringExtra("user_id");
+                    intent.putExtra("selectedDate", selectedDate);
+                    intent.putExtra("firstName", firstNameExport);
+                    intent.putExtra("typeRegister", registerExport);
+                    intent.putExtra("user_id", userId);
+                    startActivity(intent);
                     finish();
                     return true;
                 }
@@ -135,7 +146,7 @@ public class Payment extends AppCompatActivity {
     }
 
     private void createPaymentLink() {
-        String phpUrl = "https://bfe3-136-158-33-155.ngrok-free.app/LogReg/payment.php";
+        String phpUrl = URLs.PAYMENT;
 
         RequestQueue queue = Volley.newRequestQueue(this);
 
@@ -147,7 +158,6 @@ public class Payment extends AppCompatActivity {
                         JSONObject attributes = data.getJSONObject("attributes");
                         String checkoutUrl = attributes.getString("checkout_url");
 
-                        // 🔑 Extract the code (e.g., "8iChSHV")
                         String[] parts = checkoutUrl.split("/");
                         paymentCode = parts[parts.length - 1];
 
@@ -160,12 +170,12 @@ public class Payment extends AppCompatActivity {
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(Payment.this, "Invalid JSON from server", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Payment.this, "Invalid JSON from server" + e, Toast.LENGTH_SHORT).show();
                     }
                 },
                 error -> {
                     error.printStackTrace();
-                    Toast.makeText(Payment.this, "Failed to connect to PHP server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Payment.this, "Failed to connect to PHP server" + error, Toast.LENGTH_SHORT).show();
                 });
 
         queue.add(stringRequest);

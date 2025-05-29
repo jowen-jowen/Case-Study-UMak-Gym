@@ -1,6 +1,8 @@
 package com.example.umakgymreserve;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +18,9 @@ import java.util.Map;
 
 public class PaymentSuccess extends AppCompatActivity {
 
-    private TextView summaryReference, summaryName, reservationDate, amountTextView;
-    private int amount;
+    private TextView summaryReference, summaryName, reservationDate, amountTextView, type;
+    Button reserveAgain, logout;
+    private double amount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,9 @@ public class PaymentSuccess extends AppCompatActivity {
         summaryName = findViewById(R.id.summaryName);
         reservationDate = findViewById(R.id.reservationDate);
         amountTextView = findViewById(R.id.tvAmount);
+        type = findViewById(R.id.tvType);
+        logout = findViewById(R.id.btnBook);
+        reserveAgain = findViewById(R.id.btnBackToHome);
 
         String fName = getIntent().getStringExtra("firstName");
         String paymentCode = getIntent().getStringExtra("payment_code");
@@ -35,25 +41,41 @@ public class PaymentSuccess extends AppCompatActivity {
         String registerExport = getIntent().getStringExtra("typeRegister");
 
         if (registerExport.equals("STUDENT")){
-            amount = 30;
+            amount = 30.00;
             amountTextView.setText(String.format("Amount: %s", amount));
         }
 
         if (registerExport.equals("EMPLOYEE")) {
-            amount = 20;
+            amount = 20.00;
             amountTextView.setText(String.format("Amount: %s", amount));
         }
 
         if(registerExport.equals("ALUMNI")){
-            amount = 50;
+            amount = 50.00;
             amountTextView.setText(String.format("Amount: %s", amount));
         }
 
         summaryName.setText(String.format("Name: %s", fName));
         summaryReference.setText(String.format("Reference Number: %s", paymentCode));
         reservationDate.setText(String.format("Reservation Date: %s", selectedDate));
+        type.setText(String.format("Type: %s", registerExport));
 
         sendPaymentToServer(userId, paymentCode, selectedDate);
+
+        logout.setOnClickListener(v -> {
+            Intent intent = new Intent(PaymentSuccess.this, LogReg.class);
+            startActivity(intent);
+            finish();
+        });
+
+        reserveAgain.setOnClickListener(v -> {
+            Intent intent = new Intent(PaymentSuccess.this, ReservationPage.class);
+            intent.putExtra("firstName", fName);
+            intent.putExtra("typeRegister", registerExport);
+            intent.putExtra("user_id", userId);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void sendPaymentToServer(String userId, String reference, String reservationDate) {

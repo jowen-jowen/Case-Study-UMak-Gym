@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             app:strokeColor="@color/black"
-            app:strokeWidth="1sp"/>
+            app:strokeWidth="1sp" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -93,5 +93,6 @@
             app:layout_constraintBottom_toTopOf="@+id/btnBackHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
